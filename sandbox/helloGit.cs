@@ -1,3 +1,5 @@
+// C. Marechal, 01/2014
+
 using System;
 
 namespace HelloGit
