@@ -86,7 +86,7 @@ namespace TestOberversSubjects
             object sender = null; // TODO: initialisez à une valeur appropriée
             EventArgs e = null; // TODO: initialisez à une valeur appropriée
             target.Notify(sender, e);
-            Assert.Inconclusive("Une méthode qui ne retourne pas une valeur ne peut pas être vérifiée.");
+            Assert.Inconclusive("Une méthode qui ne retourne pas une valeur ne peut pas être vérifiée...");
         }
 
         /// <summary>
