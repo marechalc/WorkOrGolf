@@ -7,8 +7,20 @@
 using System;
 namespace SlidingPuzzle
 {
-    class SPModel
-    {
+    class SPModel {
+
+        #region fields & get/set
+        private Game _game;
+
+        internal Game Game {
+            get {
+                if (_game == null)
+                    _game = new Game(); //lazy initialization                
+                return _game; }
+            set { _game = value; }
+        }
+        #endregion
+
         /// <summary>
         /// Constructor of the model
         /// </summary>
