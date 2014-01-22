@@ -9,7 +9,7 @@
     <ProjectGuid>{B4F92153-7B73-4254-B5B8-A32D403FF52A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestOberversSubjects</RootNamespace>
+    <RootNamespace>TestObserversSubjects</RootNamespace>
     <AssemblyName>TestOberversSubjects</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

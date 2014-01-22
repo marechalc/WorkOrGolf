@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserversSubjectEvent", "ObserversSubjectEvent\ObserversSubjectEvent.csproj", "{02C08F82-3B26-4A06-9CE7-6E9CBAC07916}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOberversSubjects", "TestOberversSubjects\TestOberversSubjects.csproj", "{B4F92153-7B73-4254-B5B8-A32D403FF52A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestObserversSubjects", "TestObserversSubjects\TestObserversSubjects.csproj", "{B4F92153-7B73-4254-B5B8-A32D403FF52A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25E80674-FC11-4CCB-8178-23C0DEE8C79F}"
 	ProjectSection(SolutionItems) = preProject
