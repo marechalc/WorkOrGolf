@@ -2,6 +2,8 @@
  * description: a very simple exemple to demonstrate the use of event.
  *              this a slightly modified version of the code provided for the exercide by C. Maréchal.
  * date: 2014-01-19
+ * 
+ * RC was here
  */
 using System;
 
