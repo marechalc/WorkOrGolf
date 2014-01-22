@@ -10,6 +10,7 @@ namespace HelloGit
         {
             Console.WriteLine("Hello Git");
 			Console.WriteLine("Hello Menetrey");
+            Console.WriteLine("Hello Sampaio");
         }
     }
 }
