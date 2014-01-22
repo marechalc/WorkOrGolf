@@ -5,12 +5,12 @@ using System.Drawing;
 
 namespace TestPiece
 {
-    
-    
-    /// <summary>
-    ///Classe de test pour PieceTest, destinée à contenir tous
-    ///les tests unitaires PieceTest
-    ///</summary>
+
+
+  /// <summary>
+  ///Classe de test pour PieceTest, destinée à contenir tous
+  ///les tests unitaires PieceTest
+  ///</summary>
   [TestClass()]
   public class PieceTest
   {
@@ -71,10 +71,12 @@ namespace TestPiece
     [TestMethod()]
     public void PieceConstructorTest()
     {
-      Rectangle rect = new Rectangle(); // TODO: initialisez à une valeur appropriée
-      int symbolId = 0; // TODO: initialisez à une valeur appropriée
+      Rectangle rect = new Rectangle(new Point(10, 25), new Size(1, 1));
+      int symbolId = 2;
       Piece target = new Piece(rect, symbolId);
-      Assert.Inconclusive("TODO: implémentez le code pour vérifier la cible");
+
+      Assert.AreEqual(rect, target.Rect);
+      Assert.AreEqual(symbolId, target.SymbolId);
     }
 
     /// <summary>
@@ -84,7 +86,10 @@ namespace TestPiece
     public void PieceConstructorTest1()
     {
       Piece target = new Piece();
-      Assert.Inconclusive("TODO: implémentez le code pour vérifier la cible");
+      Rectangle emptyRectangle = new Rectangle(new Point(0, 0), new Size(0, 0));
+
+      Assert.AreEqual(emptyRectangle, target.Rect);
+      Assert.AreEqual(0, target.SymbolId);
     }
   }
 }

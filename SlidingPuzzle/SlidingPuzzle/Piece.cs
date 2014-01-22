@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace SlidingPuzzle
 {
-  class Piece
+  public class Piece
   {
     #region Fields
     private Rectangle _rect;
@@ -32,7 +32,7 @@ namespace SlidingPuzzle
     /// Constructor
     /// </summary>
     public Piece()
-      : this(new Rectangle(), 0)
+      : this(new Rectangle(new Point(0,0), new Size(0,0)), 0)
     {
       // No code
     }
