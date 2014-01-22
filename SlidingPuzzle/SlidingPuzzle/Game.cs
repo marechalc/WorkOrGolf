@@ -65,7 +65,7 @@ namespace SlidingPuzzle
         /// <returns></returns>
         public Direction[] Move(Point point)
         {
-
+            return new Direction[1];
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace SlidingPuzzle
         /// <returns></returns>
         public bool Move(Point point, Direction direction)
         {
-
+            return true;
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace SlidingPuzzle
         /// <returns></returns>
         public bool IsCompleted()
         {
-
+            return true;
         }
     }
 }
