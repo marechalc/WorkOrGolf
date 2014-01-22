@@ -3,7 +3,7 @@
  *              this a slightly modified version of the code provided for the exercide by C. Maréchal.
  * date: 2014-01-19
  * 
- * RC was here
+ * RC was here 09:12
  */
 using System;
 
