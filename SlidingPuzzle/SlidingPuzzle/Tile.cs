@@ -7,6 +7,11 @@ namespace SlidingPuzzle
 {
     public class Tile
     {
+        #region consts
+        const bool DEFAULT_ISALLOWED = true;
+        const int DEFAULT_SYMBOLID = 0;
+        #endregion
+
         #region fields
         bool _isAllowed;
         int _symbolId;
@@ -16,21 +21,22 @@ namespace SlidingPuzzle
         public int SymbolId
         {
             get { return _symbolId; }
-            set { _symbolId = value; }
+            private set { _symbolId = value; }
         }
 
         public bool IsAllowed
         {
             get { return _isAllowed; }
-            set { _isAllowed = value; }
+            private set { _isAllowed = value; }
         }
         #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tile"/> class.
         /// </summary>
-        public Tile():this(true,0)
-        { 
+        public Tile()
+            : this(DEFAULT_ISALLOWED, DEFAULT_SYMBOLID)
+        {
             //NO CODE
         }
 
