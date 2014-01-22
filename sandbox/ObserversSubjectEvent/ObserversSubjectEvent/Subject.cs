@@ -7,9 +7,9 @@ using System;
 namespace ObserversSubjectEvent
 {
 
-    public class OnRateChangedtArgs : EventArgs
+    public class OnRateChangedArgs : EventArgs
     {
-        public OnRateChangedtArgs(Double oldRate, Double newRate)
+        public OnRateChangedArgs(Double oldRate, Double newRate)
         {
             OldRate = oldRate;
             NewRate = newRate;
@@ -20,7 +20,7 @@ namespace ObserversSubjectEvent
 
     public class Subject
     {
-        public delegate void OnRateChangedEventHandler(object sender, OnRateChangedtArgs e);
+        public delegate void OnRateChangedEventHandler(object sender, OnRateChangedArgs e);
 
         Double _rate;
         public event OnRateChangedEventHandler OnRateChanged;
@@ -37,7 +37,7 @@ namespace ObserversSubjectEvent
                     OnRateChangedEventHandler handler = OnRateChanged;
                     if (handler != null)
                     {
-                        handler(this, new OnRateChangedtArgs(oldRate, _rate));
+                        handler(this, new OnRateChangedArgs(oldRate, _rate));
                     }
                 }
             }
