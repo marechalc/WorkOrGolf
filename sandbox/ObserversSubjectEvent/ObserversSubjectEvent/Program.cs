@@ -25,10 +25,11 @@ namespace ObserversSubjectEvent
 
             Observer observer3 = new Observer(3);
             Console.WriteLine("Subscribe observer 3.");
-            subject.OnRateChanged += observer2.Notify;
+            subject.OnRateChanged += observer3.Notify;
+
             Observer observer666 = new Observer(666); //le diable
             Console.WriteLine("Subscribe observer 666.");
-            subject.OnRateChanged += observer3.Notify;
+            subject.OnRateChanged += observer666.Notify;
 
             Console.WriteLine("\nChange the rate field of the subject.");
             subject.Rate += .5;
