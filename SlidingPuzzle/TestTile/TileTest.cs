@@ -1,6 +1,5 @@
-﻿using SlidingPuzzle;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SlidingPuzzle;
 
 namespace TestTile
 {

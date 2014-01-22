@@ -1,7 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/*
+ * File    : Tile.cs
+ * Project : Sliding Puzzle - Work Or Golf
+ * Authors : Damien L, Zanos A.
+ * Date    : 2014-01-22
+ * 
+ * Vers.   : 1.0, 2014-01-22, CFPTI Technicien ES by : Damien L, Zanos A.
+ */
 
 namespace SlidingPuzzle
 {
