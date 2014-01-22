@@ -32,7 +32,7 @@ namespace SlidingPuzzle
     /// Constructor
     /// </summary>
     public Piece()
-      : this(new Rectangle(new Point(0,0), new Size(0,0)), 0)
+      : this(new Rectangle(new Point(0,0), new Size(1,1)), 0)
     {
       // No code
     }
