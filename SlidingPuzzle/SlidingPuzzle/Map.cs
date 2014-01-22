@@ -12,6 +12,8 @@ namespace SlidingPuzzle
     class Map
     {
         #region Fields
+        public const int DEFAULT_TILES_X = 3;
+        public const int DEFAULT_TILES_Y = 4;
         private Tile[,] _tiles;
 
         internal Tile[,] Tiles
@@ -23,14 +25,17 @@ namespace SlidingPuzzle
 
         #region Constructors
         public Map()
-            : this(new Tile[3, 3])
+            : this(new Tile[DEFAULT_TILES_X, DEFAULT_TILES_Y])
         {
             // NO CODE
         }
 
         public Map(Tile[,] tiles)
         {
-            this.Tiles = tiles;
+            if (tiles == null)
+                this.Tiles = new Tile[DEFAULT_TILES_X, DEFAULT_TILES_Y]; // NO REPEAT !!
+            else
+                this.Tiles = tiles;
         }
         #endregion
 

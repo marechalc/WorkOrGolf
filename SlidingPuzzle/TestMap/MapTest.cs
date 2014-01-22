@@ -5,8 +5,8 @@ using System.Drawing;
 
 namespace TestMap
 {
-    
-    
+
+
     /// <summary>
     ///Classe de test pour MapTest, destinée à contenir tous
     ///les tests unitaires MapTest
@@ -71,9 +71,9 @@ namespace TestMap
         [TestMethod()]
         public void MapConstructorTest()
         {
-            Tile[,] tiles = null; // TODO: initialisez à une valeur appropriée
+            Tile[,] tiles = null;
             Map target = new Map(tiles);
-            Assert.Inconclusive("TODO: implémentez le code pour vérifier la cible");
+            Assert.AreNotEqual(null, target.Tiles);
         }
 
         /// <summary>
@@ -83,7 +83,8 @@ namespace TestMap
         public void MapConstructorTest1()
         {
             Map target = new Map();
-            Assert.Inconclusive("TODO: implémentez le code pour vérifier la cible");
+            Assert.AreEqual(Map.DEFAULT_TILES_X, target.Tiles.GetLength(0));
+            Assert.AreEqual(Map.DEFAULT_TILES_Y, target.Tiles.GetLength(1));
         }
 
         /// <summary>
@@ -92,13 +93,19 @@ namespace TestMap
         [TestMethod()]
         public void IsAllowedTest()
         {
-            Map target = new Map(); // TODO: initialisez à une valeur appropriée
-            Rectangle rect = new Rectangle(); // TODO: initialisez à une valeur appropriée
-            bool expected = false; // TODO: initialisez à une valeur appropriée
+            Map target = new Map();
             bool actual;
-            actual = target.IsAllowed(rect);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
+            for (int i = -5; i < 5; i++)
+                for (int j = -5; j < 5; j++)
+                {
+                    Rectangle rect = new Rectangle(i, j, 1, 1);
+                    actual = target.IsAllowed(rect);
+                    if ((rect.X <= target.Tiles.GetLength(0) && rect.X >= 0) && (rect.Y <= target.Tiles.GetLength(1) && rect.Y >= 0))
+                        Assert.AreEqual(true, actual);
+                    else
+                        Assert.AreNotEqual(true, actual);
+                }
+            // ADD TEST DEBORDEMENT
         }
 
         /// <summary>
