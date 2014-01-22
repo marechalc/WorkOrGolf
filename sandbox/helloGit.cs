@@ -15,6 +15,7 @@ namespace HelloGit
             Console.WriteLine("Hello Mr. Peiry");
             Console.WriteLine("Hello Damien");
             Console.WriteLine("Hello Lopes");
+			Console.WriteLine("Hello Pereira");
         }
     }
 }
