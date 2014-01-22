@@ -1,7 +1,7 @@
 ﻿/* author: Loic Damien
  * description: a very simple exemple to demonstrate the use of event
  * date: 2014-01-19
- * Version : 2.0
+ * Version : 2.0 Second Version
  */
 
 using System;
