@@ -1,32 +1,33 @@
 ﻿/*
+ * File    : Game.cs
  * Project : Sliding Puzzle - Work Or Golf
- * Authors : RC & MS
+ * Authors : rejas c, menetrey s.
  * Date    : 2014-01-22
  * 
- * Vers.   : 1.0, CFPTI Technicien ES
+ * Vers.   : 1.0, 2014-01-22, CFPTI Technicien ES by : rejas c, menetrey s.
  */
+
 using System.Drawing;
 namespace SlidingPuzzle
 {
-    enum Direction
+    public enum Direction
     {
         Up,
         Down,
         Left,
         Right,
         None
-
     }
 
     class Game
     {
+        #region Const.
+        const int DEFAULT_NB_PIECES = 1;
+        #endregion
+
         #region Fields
         private Map _map;
         private Piece[] _pieces;
-        #endregion
-
-        #region Const.
-        const int DEFAULT_NB_PIECES = 1;
         #endregion
 
         #region Properties
@@ -43,10 +44,12 @@ namespace SlidingPuzzle
         }
         #endregion
 
-        public Game():this(new Map(), new Piece[DEFAULT_NB_PIECES])
-        {
-            //NO CODE
-        }
+        #region Methods
+        /// <summary>
+        /// Designed constructor
+        /// </summary>
+        public Game() : this(new Map(), new Piece[DEFAULT_NB_PIECES])
+        { } // No code
 
         /// <summary>
         /// 
@@ -55,7 +58,8 @@ namespace SlidingPuzzle
         /// <param name="pieces"></param>
         public Game(Map map, Piece[] pieces)
         {
-
+            this.Map = map;
+            this.Pieces = pieces;
         }
 
         /// <summary>
@@ -87,5 +91,6 @@ namespace SlidingPuzzle
         {
             return true;
         }
+        #endregion
     }
 }

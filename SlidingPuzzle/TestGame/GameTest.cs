@@ -1,12 +1,19 @@
-﻿using SlidingPuzzle;
+﻿/*
+ * File    : GameTest.cs
+ * Project : Sliding Puzzle - Work Or Golf (Unit tests)
+ * Authors : rejas c, menetrey s.
+ * Date    : 2014-01-22
+ * 
+ * Vers.   : 1.0, 2014-01-22, CFPTI Technicien ES by : rejas c, menetrey s.
+ */
+
+using SlidingPuzzle;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
 
 namespace TestGame
 {
-    
-    
     /// <summary>
     ///Classe de test pour GameTest, destinée à contenir tous
     ///les tests unitaires GameTest
@@ -14,8 +21,6 @@ namespace TestGame
     [TestClass()]
     public class GameTest
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>
@@ -72,7 +77,16 @@ namespace TestGame
         public void GameConstructorTest()
         {
             Game target = new Game();
-            Assert.Inconclusive("TODO: implémentez le code pour vérifier la cible");
+            Assert.AreNotEqual(target.Map, null);
+            Assert.AreNotEqual(target.Pieces, null);
+
+            //Est-ce que les pièces sont instanciées dans Game ou au dessus ? Théoriquement = au dessus
+
+            //foreach (Piece p in target.Pieces)
+            //{
+            //    Assert.AreNotEqual(p, null);
+            //}
+
         }
 
         /// <summary>
@@ -81,10 +95,17 @@ namespace TestGame
         [TestMethod()]
         public void GameConstructorTest1()
         {
-            Map map = null; // TODO: initialisez à une valeur appropriée
-            Piece[] pieces = null; // TODO: initialisez à une valeur appropriée
+            Map map = new Map(new Tile[10,10]);
+            Piece[] pieces = new Piece[1];
             Game target = new Game(map, pieces);
-            Assert.Inconclusive("TODO: implémentez le code pour vérifier la cible");
+
+            Assert.AreNotEqual(target.Map, null);
+            Assert.AreNotEqual(target.Pieces, null);
+
+            //foreach (Piece p in target.Pieces)
+            //{
+            //    Assert.AreNotEqual(p, null);
+            //}
         }
 
         /// <summary>
@@ -93,12 +114,26 @@ namespace TestGame
         [TestMethod()]
         public void IsCompletedTest()
         {
-            Game target = new Game(); // TODO: initialisez à une valeur appropriée
-            bool expected = false; // TODO: initialisez à une valeur appropriée
-            bool actual;
-            actual = target.IsCompleted();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
+            Map map = new Map();
+
+            // Define actuals position of 3 pieces
+            Piece[] piecesActualPositions = new Piece[3];
+            piecesActualPositions[0] = new Piece(new Rectangle(0, 0, 1, 1), 0);
+            piecesActualPositions[1] = new Piece(new Rectangle(1, 1, 1, 1), 1);
+            piecesActualPositions[2] = new Piece(new Rectangle(2, 2, 1, 1), 2);
+
+            // Define final position of 3 pieces
+            Piece[] piecesFinalPositions = new Piece[3];
+            piecesFinalPositions[0] = new Piece(new Rectangle(0, 0, 1, 1), 0);
+            piecesFinalPositions[1] = new Piece(new Rectangle(1, 1, 1, 1), 1);
+            piecesFinalPositions[2] = new Piece(new Rectangle(2, 2, 1, 1), 2);
+
+            Game game = new Game(map, piecesActualPositions);
+
+            // TODO : care of the symbol id
+            Assert.AreEqual(piecesFinalPositions[0].Rect, piecesActualPositions[0].Rect);
+            Assert.AreEqual(piecesFinalPositions[1].Rect, piecesActualPositions[1].Rect);
+            Assert.AreEqual(piecesFinalPositions[2].Rect, piecesActualPositions[2].Rect);
         }
 
         /// <summary>
