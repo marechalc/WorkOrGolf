@@ -29,7 +29,7 @@ namespace SlidingPuzzle
     #endregion
 
     /// <summary>
-    /// Constructor
+    ///  Initializes a new instance of the <see cref="SlidingPuzzle"/> class.
     /// </summary>
     public Piece()
       : this(new Rectangle(new Point(0,0), new Size(1,1)), 0)
@@ -38,7 +38,7 @@ namespace SlidingPuzzle
     }
 
     /// <summary>
-    /// Designated constructor
+    ///  Initializes a new instance of the <see cref="SlidingPuzzle"/> class with a rectangle and a symbol id.
     /// </summary>
     /// <param name="rect">Size and position of the piece</param>
     /// <param name="symbolId">Index of the symbol</param>
