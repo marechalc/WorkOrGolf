@@ -11,6 +11,7 @@ using SlidingPuzzle;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
+using System.Text;
 
 namespace TestGame
 {
@@ -39,9 +40,9 @@ namespace TestGame
             }
         }
 
-        #region Attributs de tests supplémentaires
+        #region Attributs de tests sUpplémentaires
         // 
-        //Vous pouvez utiliser les attributs supplémentaires suivants lorsque vous écrivez vos tests :
+        //Vous pouvez utiliser les attributs sUpplémentaires suivants lorsque vous écrivez vos tests :
         //
         //Utilisez ClassInitialize pour exécuter du code avant d'exécuter le premier test dans la classe
         //[ClassInitialize()]
@@ -49,9 +50,9 @@ namespace TestGame
         //{
         //}
         //
-        //Utilisez ClassCleanup pour exécuter du code après que tous les tests ont été exécutés dans une classe
-        //[ClassCleanup()]
-        //public static void MyClassCleanup()
+        //Utilisez ClassCleanUp pour exécuter du code après que tous les tests ont été exécutés dans une classe
+        //[ClassCleanUp()]
+        //public static void MyClassCleanUp()
         //{
         //}
         //
@@ -61,9 +62,9 @@ namespace TestGame
         //{
         //}
         //
-        //Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-        //[TestCleanup()]
-        //public void MyTestCleanup()
+        //Utilisez TestCleanUp pour exécuter du code après que chaque test a été exécuté
+        //[TestCleanUp()]
+        //public void MyTestCleanUp()
         //{
         //}
         //
@@ -109,6 +110,23 @@ namespace TestGame
         }
 
         /// <summary>
+        /// Check if two array contains the same elements
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of the arrays</typeparam>
+        /// <param name="expected">The expected array</param>
+        /// <param name="actual">The actual array</param>
+        public void ArraysAreEqual<T>(T[] expected, T[] actual)
+        {
+            Assert.AreEqual(expected.Length, actual.Length, "The length of the two array are not equal");
+            Array.Sort(expected);
+            Array.Sort(actual);
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
+
+        /// <summary>
         ///Test pour IsCompleted
         ///</summary>
         [TestMethod()]
@@ -136,19 +154,235 @@ namespace TestGame
             Assert.AreEqual(piecesFinalPositions[2].Rect, piecesActualPositions[2].Rect);
         }
 
+        private int[,] GetSymbolsMap(Game g)
+        {
+            int Width = g.Map.Tiles.GetLength(0);
+            int Height = g.Map.Tiles.GetLength(1);
+            int[,] symbolsMap = new int[Width, Height];
+
+
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    symbolsMap[x, y] = g.Map.Tiles[x, y].SymbolId;
+                }
+            }
+
+            foreach (Piece piece in g.Pieces)
+            {
+                for (int x = piece.Rect.Left; x < piece.Rect.Right; x++)
+                {
+                    for (int y = piece.Rect.Top; y < piece.Rect.Bottom; y++)
+                    {
+                        symbolsMap[x, y] = piece.SymbolId;
+                    }
+                }
+
+            }
+
+            return symbolsMap;
+        }
+
+        private string GameToString(Game g)
+        {   
+            char[] symbolsChars = new char[] {' ', '#', '*' };
+            int Width = g.Map.Tiles.GetLength(0);
+            int Height = g.Map.Tiles.GetLength(1);
+            int[,] symbolsMap = GetSymbolsMap(g);
+
+            StringBuilder sb = new StringBuilder(Height * (Width + 1));
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    int symbolId = symbolsMap[x, y];
+                    sb.Append(symbolsChars[Math.Min(symbolsChars.Length, symbolId)]);
+                }
+                sb.Append('\n');
+            }
+            return sb.ToString();
+        }
+
         /// <summary>
         ///Test pour Move
         ///</summary>
         [TestMethod()]
         public void MoveTest()
         {
-            Game target = new Game(); // TODO: initialisez à une valeur appropriée
-            Point point = new Point(); // TODO: initialisez à une valeur appropriée
-            Direction[] expected = null; // TODO: initialisez à une valeur appropriée
-            Direction[] actual;
-            actual = target.Move(point);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
+            // 1D games, 1x1 pieces
+
+            Game target = new Game(new Map(new Tile[3, 1] { { new Tile() }, { new Tile() }, { new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(1, 0, 1, 1), 2) });
+            // This game is 3x1 map with every tiles allowed and two 1x1 pieces in the first two column
+
+            Assert.AreEqual("** \n", GameToString(target));
+
+            Point p = new Point(2, 0); // The empty 
+            Direction[] expected = new Direction[0];
+            Direction[] actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+      
+            p = new Point(1, 0);
+            expected = new Direction[1] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("* *\n", GameToString(target));
+
+            p = new Point(1, 0);
+            expected = new Direction[0];
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("* *\n", GameToString(target));
+
+            p = new Point(2, 0);
+            expected = new Direction[1] { Direction.Left };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("** \n", GameToString(target));
+
+            p = new Point(0, 0);
+            expected = new Direction[1] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" **\n", GameToString(target));
+
+            p = new Point(0, 0);
+            expected = new Direction[0];
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" **\n", GameToString(target));
+
+            p = new Point(2, 0);
+            expected = new Direction[1] { Direction.Left };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("** \n", GameToString(target));
+
+            target = new Game(new Map(new Tile[1, 3] { { new Tile(), new Tile(), new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(0, 1, 1, 1), 2) });
+            // This game is 1x3 map with every tiles allowed and two 1x1 pieces in the first two column
+
+            Assert.AreEqual("*\n*\n \n", GameToString(target));
+
+            p = new Point(0, 2);
+            expected = new Direction[0];
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+
+            p = new Point(0, 1);
+            expected = new Direction[1] { Direction.Down };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("*\n \n*\n", GameToString(target));
+
+            p = new Point(0, 1);
+            expected = new Direction[0];
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("*\n \n*\n", GameToString(target));
+
+            p = new Point(0, 2);
+            expected = new Direction[1] { Direction.Up };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("*\n*\n \n", GameToString(target));
+
+            p = new Point(0, 0);
+            expected = new Direction[1] { Direction.Down };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" \n*\n*\n", GameToString(target));
+
+            p = new Point(0, 0);
+            expected = new Direction[0];
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" \n*\n*\n", GameToString(target));
+
+            p = new Point(0, 2);
+            expected = new Direction[1] { Direction.Up };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("*\n*\n \n", GameToString(target));
+
+            target = new Game(new Map(new Tile[4, 1] { { new Tile() }, { new Tile() }, { new Tile() }, { new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(1, 0, 1, 1), 2) });
+            // This game is a 4x1 map with every tiles allowed and two 1x1 pieces in the first two column
+            Assert.AreEqual("**  \n", GameToString(target));
+
+            p = new Point(1, 0);
+            expected = new Direction[1] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("* * \n", GameToString(target));
+
+            p = new Point(1, 0);
+            expected = new Direction[0];
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("* * \n", GameToString(target));
+
+            p = new Point(2, 0);
+            expected = new Direction[2] { Direction.Left, Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("* * \n", GameToString(target));
+
+            p = new Point(0, 0);
+            expected = new Direction[1] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" ** \n", GameToString(target));
+
+            p = new Point(1, 0);
+            expected = new Direction[2] { Direction.Left, Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" ** \n", GameToString(target));
+
+            p = new Point(2, 0);
+            expected = new Direction[2] { Direction.Left, Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" ** \n", GameToString(target));
+
+            // todo: 1x4
+
+            // With obstacle
+
+            target = new Game(new Map(new Tile[5, 1] { { new Tile() }, { new Tile() }, { new Tile() }, { new Tile(false, 1) }, { new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(1, 0, 1, 1), 2) });
+            Assert.AreEqual("** # \n", GameToString(target));
+
+            p = new Point(1, 0);
+            expected = new Direction[1] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("* *# \n", GameToString(target));
+
+            p = new Point(2, 0);
+            expected = new Direction[1] { Direction.Left };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("** # \n", GameToString(target));
+
+            p = new Point(0, 0);
+            expected = new Direction[1] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" **# \n", GameToString(target));
+
+            p = new Point(2, 0);
+            expected = new Direction[1] { Direction.Left };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("** # \n", GameToString(target));
+
+
+            // 2D games, 1x1 pieces
+
+            target = new Game(new Map(new Tile[2, 2] { { new Tile(), new Tile() }, { new Tile(), new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(0, 1, 1, 1), 2) });
+            // This game is 2x2 map with every tiles allowed and two 1x1 pieces in the first two column
+
+            //2D games, pieces bigger than 1x1
         }
 
         /// <summary>
@@ -163,36 +397,6 @@ namespace TestGame
             bool expected = false; // TODO: initialisez à une valeur appropriée
             bool actual;
             actual = target.Move(point, direction);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
-        }
-
-        /// <summary>
-        ///Test pour Map
-        ///</summary>
-        [TestMethod()]
-        public void MapTest()
-        {
-            Game target = new Game(); // TODO: initialisez à une valeur appropriée
-            Map expected = null; // TODO: initialisez à une valeur appropriée
-            Map actual;
-            target.Map = expected;
-            actual = target.Map;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
-        }
-
-        /// <summary>
-        ///Test pour Pieces
-        ///</summary>
-        [TestMethod()]
-        public void PiecesTest()
-        {
-            Game target = new Game(); // TODO: initialisez à une valeur appropriée
-            Piece[] expected = null; // TODO: initialisez à une valeur appropriée
-            Piece[] actual;
-            target.Pieces = expected;
-            actual = target.Pieces;
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
         }
