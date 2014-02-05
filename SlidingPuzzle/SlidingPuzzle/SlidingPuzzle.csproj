@@ -49,7 +49,6 @@
     <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SPController.cs" />
     <Compile Include="SPModel.cs" />
     <Compile Include="Tile.cs" />
   </ItemGroup>

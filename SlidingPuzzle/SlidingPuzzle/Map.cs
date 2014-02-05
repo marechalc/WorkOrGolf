@@ -9,14 +9,14 @@ using System.Drawing;
 
 namespace SlidingPuzzle
 {
-    class Map
+    public class Map
     {
         #region Fields
         public const int DEFAULT_TILES_X = 3;
         public const int DEFAULT_TILES_Y = 4;
         private Tile[,] _tiles;
 
-        internal Tile[,] Tiles
+        public Tile[,] Tiles
         {
             get { return _tiles; }
             set { _tiles = value; }
@@ -32,16 +32,28 @@ namespace SlidingPuzzle
 
         public Map(Tile[,] tiles)
         {
-            if (tiles == null)
-                this.Tiles = new Tile[DEFAULT_TILES_X, DEFAULT_TILES_Y]; // NO REPEAT !!
-            else
-                this.Tiles = tiles;
+            this.Tiles = tiles;
         }
         #endregion
 
         public bool IsAllowed(Rectangle rect)
         {
-            return false;
+            bool allowed = true;
+            if (rect.X >= 0 &&
+                rect.Y >= 0 &&
+                rect.X < Tiles.GetLength(0) &&
+                rect.Y < Tiles.GetLength(1) &&
+                rect.X + rect.Width <= Tiles.GetLength(0) &&
+                rect.Y + rect.Height <= Tiles.GetLength(1))
+            {
+                for (int i = rect.X; i < (rect.X + rect.Width); i++)
+                    for (int j = rect.Y; j < (rect.Y + rect.Height); j++)
+                        if (!this.Tiles[i, j].IsAllowed)
+                            allowed = false;
+            }
+            else
+                allowed = false;
+            return allowed;
         }
     }
 }

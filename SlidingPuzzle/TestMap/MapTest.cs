@@ -68,13 +68,14 @@ namespace TestMap
         /// <summary>
         ///Test pour Constructeur Map
         ///</summary>
-        [TestMethod()]
+        /*[TestMethod()]
         public void MapConstructorTest()
         {
             Tile[,] tiles = null;
             Map target = new Map(tiles);
             Assert.AreNotEqual(null, target.Tiles);
-        }
+        }*/
+        //this test isn't usefull
 
         /// <summary>
         ///Test pour Constructeur Map
@@ -93,19 +94,34 @@ namespace TestMap
         [TestMethod()]
         public void IsAllowedTest()
         {
-            Map target = new Map();
-            bool actual;
-            for (int i = -5; i < 5; i++)
-                for (int j = -5; j < 5; j++)
+            Tile[,] tiles = new Tile[10, 10];
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
                 {
-                    Rectangle rect = new Rectangle(i, j, 1, 1);
-                    actual = target.IsAllowed(rect);
-                    if ((rect.X <= target.Tiles.GetLength(0) && rect.X >= 0) && (rect.Y <= target.Tiles.GetLength(1) && rect.Y >= 0))
-                        Assert.AreEqual(true, actual);
-                    else
-                        Assert.AreNotEqual(true, actual);
+                    tiles[i, j] = new Tile();
                 }
-            // ADD TEST DEBORDEMENT
+            }
+            Map target = new Map(tiles);
+            bool actual;
+            for (int i = -5; i < 15; i++)
+                for (int j = -5; j < 15; j++)
+                {
+                    for (int k = -5; k < 15; k++)
+                    {
+                        Rectangle rect = new Rectangle(i, j, k, k);
+                        actual = target.IsAllowed(rect);
+                        if (rect.X < target.Tiles.GetLength(0) &&
+                            rect.X >= 0 &&
+                            rect.Y < target.Tiles.GetLength(1) &&
+                            rect.Y >= 0 &&
+                            rect.X + rect.Width <= target.Tiles.GetLength(0) &&
+                            rect.Y + rect.Height <= target.Tiles.GetLength(1))
+                            Assert.AreEqual(true, actual);
+                        else
+                            Assert.AreNotEqual(true, actual);
+                    }
+                }
         }
 
         /// <summary>
@@ -114,13 +130,21 @@ namespace TestMap
         [TestMethod()]
         public void TilesTest()
         {
-            Map target = new Map(); // TODO: initialisez à une valeur appropriée
-            Tile[,] expected = null; // TODO: initialisez à une valeur appropriée
-            Tile[,] actual;
-            target.Tiles = expected;
-            actual = target.Tiles;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
+            Map target = new Map();
+            Assert.IsNotNull(target);
+
+            Tile[,] tiles = new Tile[10, 20];
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    tiles[i, j] = new Tile();
+                }
+            }
+
+            target = new Map(tiles);
+            Assert.AreEqual(10, target.Tiles.GetLength(0));
+            Assert.AreEqual(20, target.Tiles.GetLength(1));
         }
     }
 }
