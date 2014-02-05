@@ -5,6 +5,11 @@
  * Date    : 2014-01-22
  * 
  * Vers.   : 1.0, 2014-01-22, CFPTI Technicien ES by : rejas c, menetrey s.
+ * 
+ * Authors : Pereira M, Sampaio N.
+ * Date    : 2014-02-05
+ * Description : Add method Move(Point point)
+ *               Initialization of final pieces for method IsCompleted
  */
 
 using System.Drawing;
@@ -69,7 +74,37 @@ namespace SlidingPuzzle
         /// <returns></returns>
         public Direction[] Move(Point point)
         {
-            return new Direction[1];
+            Direction[] dir = new Direction[4];
+            if ((point.Y - 1) >= 0) {
+                if (Map.Tiles[point.X, point.Y - 1].IsAllowed == true) {
+                    dir[0] = Direction.Up;
+                } else
+                    dir[0] = Direction.None;            
+            }
+
+            if ((point.Y + 1) >= this.Map.Tiles.GetLength(1)) {
+                if (Map.Tiles[point.X, point.Y + 1].IsAllowed == true) {
+                    dir[1] = Direction.Down;
+                } else
+                    dir[1] = Direction.None;
+                
+            }
+
+            if ((point.X - 1) >= 0) {
+                if (Map.Tiles[point.X - 1, point.Y].IsAllowed == true) {
+                    dir[2] = Direction.Left;
+                } else
+                    dir[2] = Direction.None;
+            }
+
+            if ((point.X + 1) <= this.Map.Tiles.GetLength(0)) {
+                if (Map.Tiles[point.X + 1, point.Y].IsAllowed == true) {
+                    dir[3] = Direction.Right;
+                } else
+                    dir[3] = Direction.None;
+            }
+
+            return dir;
         }
 
         /// <summary>
@@ -89,7 +124,22 @@ namespace SlidingPuzzle
         /// <returns></returns>
         public bool IsCompleted()
         {
-            return true;
+            bool completed = false;
+            // Initialization of final pieces
+            Piece[] piecesFinal = new Piece[8];
+            piecesFinal[0] = new Piece(new Rectangle(0, 0, 1, 1), 4);
+            piecesFinal[1] = new Piece(new Rectangle(1, 0, 1, 1), 5);
+            piecesFinal[2] = new Piece(new Rectangle(2, 0, 1, 1), 6);
+            piecesFinal[3] = new Piece(new Rectangle(3, 0, 1, 1), 7);
+
+            piecesFinal[4] = new Piece(new Rectangle(0, 4, 1, 1), 0);
+            piecesFinal[5] = new Piece(new Rectangle(1, 4, 1, 1), 1);
+            piecesFinal[6] = new Piece(new Rectangle(2, 4, 1, 1), 2);
+            piecesFinal[7] = new Piece(new Rectangle(3, 4, 1, 1), 3);
+            
+            // Test if current game is completed
+
+            return completed;
         }
         #endregion
     }

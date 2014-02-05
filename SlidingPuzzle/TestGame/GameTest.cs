@@ -5,6 +5,10 @@
  * Date    : 2014-01-22
  * 
  * Vers.   : 1.0, 2014-01-22, CFPTI Technicien ES by : rejas c, menetrey s.
+ * 
+ * Authors : Pereira M, Sampaio N.
+ * Date    : 2014-02-05
+ * Description : Continuation units tests.
  */
 
 using SlidingPuzzle;
@@ -40,9 +44,9 @@ namespace TestGame
             }
         }
 
-        #region Attributs de tests sUpplémentaires
+        #region Attributs de tests supplémentaires
         // 
-        //Vous pouvez utiliser les attributs sUpplémentaires suivants lorsque vous écrivez vos tests :
+        //Vous pouvez utiliser les attributs supplémentaires suivants lorsque vous écrivez vos tests :
         //
         //Utilisez ClassInitialize pour exécuter du code avant d'exécuter le premier test dans la classe
         //[ClassInitialize()]
@@ -50,9 +54,9 @@ namespace TestGame
         //{
         //}
         //
-        //Utilisez ClassCleanUp pour exécuter du code après que tous les tests ont été exécutés dans une classe
-        //[ClassCleanUp()]
-        //public static void MyClassCleanUp()
+        //Utilisez ClassCleanup pour exécuter du code après que tous les tests ont été exécutés dans une classe
+        //[ClassCleanup()]
+        //public static void MyClassCleanup()
         //{
         //}
         //
@@ -62,9 +66,9 @@ namespace TestGame
         //{
         //}
         //
-        //Utilisez TestCleanUp pour exécuter du code après que chaque test a été exécuté
-        //[TestCleanUp()]
-        //public void MyTestCleanUp()
+        //Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
+        //[TestCleanup()]
+        //public void MyTestCleanup()
         //{
         //}
         //
@@ -211,6 +215,7 @@ namespace TestGame
         [TestMethod()]
         public void MoveTest()
         {
+<<<<<<< Updated upstream
             // 1D games, 1x1 pieces
 
             Game target = new Game(new Map(new Tile[3, 1] { { new Tile() }, { new Tile() }, { new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(1, 0, 1, 1), 2) });
@@ -391,10 +396,9 @@ namespace TestGame
         [TestMethod()]
         public void MoveTest1()
         {
-            Game target = new Game(); // TODO: initialisez à une valeur appropriée
-            Point point = new Point(); // TODO: initialisez à une valeur appropriée
-            Direction direction = new Direction(); // TODO: initialisez à une valeur appropriée
-            bool expected = false; // TODO: initialisez à une valeur appropriée
+            Game target = new Game();
+            Point point = new Point(1,1);
+            Direction direction = new Direction();
             bool actual;
             actual = target.Move(point, direction);
             Assert.AreEqual(expected, actual);
