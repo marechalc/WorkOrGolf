@@ -215,7 +215,6 @@ namespace TestGame
         [TestMethod()]
         public void MoveTest()
         {
-<<<<<<< Updated upstream
             // 1D games, 1x1 pieces
 
             Game target = new Game(new Map(new Tile[3, 1] { { new Tile() }, { new Tile() }, { new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(1, 0, 1, 1), 2) });
@@ -401,7 +400,7 @@ namespace TestGame
             Direction direction = new Direction();
             bool actual;
             actual = target.Move(point, direction);
-            Assert.AreEqual(expected, actual);
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Vérifiez l\'exactitude de cette méthode de test.");
         }
     }
