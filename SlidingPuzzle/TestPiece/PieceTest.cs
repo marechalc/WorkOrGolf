@@ -86,9 +86,9 @@ namespace TestPiece
     public void PieceConstructorTest1()
     {
       Piece target = new Piece();
-      Rectangle emptyRectangle = new Rectangle(new Point(0, 0), new Size(0, 0));
+      Rectangle defaultRectangle = new Rectangle(new Point(0, 0), new Size(1, 1));
 
-      Assert.AreEqual(emptyRectangle, target.Rect);
+      Assert.AreEqual(defaultRectangle, target.Rect);
       Assert.AreEqual(0, target.SymbolId);
     }
   }
