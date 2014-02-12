@@ -360,7 +360,28 @@ namespace TestGame
             ArraysAreEqual(expected, actual);
             Assert.AreEqual(" ** \n", GameToString(target));
 
-            // todo: 1x4
+            target = new Game(new Map(new Tile[1, 4] { { new Tile() , new Tile() , new Tile() , new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 1), 2), new Piece(new Rectangle(0, 1, 1, 1), 2) });
+            p = new Point(0, 1);
+            Assert.AreEqual("*\n*\n \n \n", GameToString(target));
+
+            expected = new Direction[1] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("*\n \n*\n \n", GameToString(target));
+
+            p = new Point(0, 1);
+            expected = new Direction[0];
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("*\n \n*\n \n", GameToString(target));
+
+            p = new Point(0, 2);
+            expected = new Direction[2] { Direction.Down, Direction.Up };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual("*\n \n*\n \n", GameToString(target));
+
+            //TODO: finish 1x4
 
             // With obstacle
 
