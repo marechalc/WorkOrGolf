@@ -158,6 +158,11 @@ namespace TestGame
             Assert.AreEqual(piecesFinalPositions[2].Rect, piecesActualPositions[2].Rect);
         }
 
+        /// <summary>
+        /// Helper method, return return an array with the symbolId of each "cell"
+        /// </summary>
+        /// <param name="g">The game for which you want the symbols ids</param>
+        /// <returns>A array with the symbols ids</returns>
         private int[,] GetSymbolsMap(Game g)
         {
             int Width = g.Map.Tiles.GetLength(0);
@@ -188,6 +193,12 @@ namespace TestGame
             return symbolsMap;
         }
 
+
+        /// <summary>
+        /// Helper method for test, return a string representing the current state of the game
+        /// </summary>
+        /// <param name="g">The game to represent</param>
+        /// <returns>The representation of the game</returns>
         private string GameToString(Game g)
         {   
             char[] symbolsChars = new char[] {' ', '#', '*' };
