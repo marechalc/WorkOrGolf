@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame", "TestGame\TestGa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMap", "TestMap\TestMap.csproj", "{D994735E-D68D-4C1E-9E75-074D91803584}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingPuzzleGUI", "..\..\..\..\Desktop\SlidingPuzzle_GUI\SlidingPuzzle\SlidingPuzzleGUI.csproj", "{E39C3FFE-B54D-4198-9F54-D56527824261}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingPuzzleGUI", "SlidingPuzzleGUI\SlidingPuzzleGUI.csproj", "{76E09450-55A5-47E9-8133-E3DEDE781E3A}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -85,16 +85,16 @@ Global
 		{D994735E-D68D-4C1E-9E75-074D91803584}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D994735E-D68D-4C1E-9E75-074D91803584}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D994735E-D68D-4C1E-9E75-074D91803584}.Release|x86.ActiveCfg = Release|Any CPU
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Debug|x86.ActiveCfg = Debug|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Debug|x86.Build.0 = Debug|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Release|Any CPU.ActiveCfg = Release|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Release|Mixed Platforms.Build.0 = Release|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Release|x86.ActiveCfg = Release|x86
-		{E39C3FFE-B54D-4198-9F54-D56527824261}.Release|x86.Build.0 = Release|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Debug|x86.ActiveCfg = Debug|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Debug|x86.Build.0 = Debug|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Release|Any CPU.ActiveCfg = Release|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Release|x86.ActiveCfg = Release|x86
+		{76E09450-55A5-47E9-8133-E3DEDE781E3A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
