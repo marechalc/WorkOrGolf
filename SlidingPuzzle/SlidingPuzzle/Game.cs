@@ -13,6 +13,8 @@
  */
 
 using System.Drawing;
+using System.Collections.Generic;
+using System;
 namespace SlidingPuzzle
 {
     public enum Direction
@@ -20,8 +22,7 @@ namespace SlidingPuzzle
         Up,
         Down,
         Left,
-        Right,
-        None
+        Right
     }
 
     class Game
@@ -47,13 +48,25 @@ namespace SlidingPuzzle
             get { return _map; }
             set { _map = value; }
         }
+
+        private int Width
+        {
+            get { return Map.Tiles.GetLength(0); }
+        }
+
+        private int Height
+        {
+            get { return Map.Tiles.GetLength(1); }
+        }
+
         #endregion
 
         #region Methods
         /// <summary>
         /// Designed constructor
         /// </summary>
-        public Game() : this(new Map(), new Piece[DEFAULT_NB_PIECES])
+        public Game()
+            : this(new Map(), new Piece[DEFAULT_NB_PIECES])
         { } // No code
 
         /// <summary>
@@ -70,42 +83,117 @@ namespace SlidingPuzzle
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="point"></param>
+        /// <param name="p"></param>
         /// <returns></returns>
-        public Direction[] Move(Point point)
+        private Piece GetPieceFromPoint(Point p)
         {
-            Direction[] dir = new Direction[4];
-            if ((point.Y - 1) >= 0) {
-                if (Map.Tiles[point.X, point.Y - 1].IsAllowed == true) {
-                    dir[0] = Direction.Up;
-                } else
-                    dir[0] = Direction.None;            
+            foreach (Piece piece in Pieces)
+            {
+                if (piece.Rect.Contains(p))
+                {
+                    return piece;
+                }
             }
-
-            if ((point.Y + 1) >= this.Map.Tiles.GetLength(1)) {
-                if (Map.Tiles[point.X, point.Y + 1].IsAllowed == true) {
-                    dir[1] = Direction.Down;
-                } else
-                    dir[1] = Direction.None;
-                
-            }
-
-            if ((point.X - 1) >= 0) {
-                if (Map.Tiles[point.X - 1, point.Y].IsAllowed == true) {
-                    dir[2] = Direction.Left;
-                } else
-                    dir[2] = Direction.None;
-            }
-
-            if ((point.X + 1) <= this.Map.Tiles.GetLength(0)) {
-                if (Map.Tiles[point.X + 1, point.Y].IsAllowed == true) {
-                    dir[3] = Direction.Right;
-                } else
-                    dir[3] = Direction.None;
-            }
-
-            return dir;
+            return null;
         }
+
+        //TODO: put this method somewhere accessible by all classes
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        private Point DirectionToPoint(Direction d)
+        {
+            switch (d)
+            {
+                case Direction.Down:
+                    return new Point(0, 1);
+                case Direction.Left:
+                    return new Point(-1, 0);
+                case Direction.Right:
+                    return new Point(1, 0);
+                case Direction.Up:
+                    return new Point(0, -1);
+                default:
+                    return new Point(0, 0);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        private bool CanMove(Piece p, Direction direction)
+        {
+            Point pointDirection = DirectionToPoint(direction);
+            Point nextPoint = new Point(p.Rect.X + pointDirection.X, p.Rect.Y + pointDirection.Y);
+
+            if (nextPoint.X < 0 || nextPoint.X >= Width || nextPoint.Y < 0 || nextPoint.Y >= Height)
+            {
+                return false;
+            }
+            else if (!Map.Tiles[nextPoint.X, nextPoint.Y].IsAllowed)
+            {
+                return false;
+            }
+
+            Piece nextToPiece = GetPieceFromPoint(nextPoint);
+            if (nextToPiece != null)
+            {
+                return CanMove(nextToPiece, direction);
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public Direction[] Move(Point p)
+        {
+            List<Direction> possiblesDirections = new List<Direction>();
+            Piece piece = GetPieceFromPoint(p);
+            if (piece != null)
+            {
+                foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+                {
+
+                    if (CanMove(piece, direction))
+                    {
+                        possiblesDirections.Add(direction);
+                    }
+                }
+                if (possiblesDirections.Count == 1)
+                    Move(piece, possiblesDirections[0]);
+            }
+
+            return possiblesDirections.ToArray();
+        }
+
+        /// <summary>
+        /// Actually move the pieces, assume the piece can move
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="direction"></param>
+        private void Move(Piece p, Direction direction)
+        {
+            Point pointDirection = DirectionToPoint(direction);
+            Point nextPoint = new Point(p.Rect.X + pointDirection.X, p.Rect.Y + pointDirection.Y);
+            Piece nextToPiece = GetPieceFromPoint(nextPoint);
+            if (nextToPiece != null)
+            {
+                Move(nextToPiece, direction);
+            }
+            p.Rect = new Rectangle(nextPoint.X, nextPoint.Y, p.Rect.Width, p.Rect.Height);
+        }
+
 
         /// <summary>
         /// 
@@ -115,7 +203,14 @@ namespace SlidingPuzzle
         /// <returns></returns>
         public bool Move(Point point, Direction direction)
         {
-            return true;
+            Piece piece = GetPieceFromPoint(point);
+            bool moved = false;
+            if (piece != null && CanMove(piece, direction))
+            {
+                Move(piece, direction);
+                moved = true;
+            }
+            return moved;
         }
 
         /// <summary>
@@ -136,7 +231,7 @@ namespace SlidingPuzzle
             piecesFinal[5] = new Piece(new Rectangle(1, 4, 1, 1), 1);
             piecesFinal[6] = new Piece(new Rectangle(2, 4, 1, 1), 2);
             piecesFinal[7] = new Piece(new Rectangle(3, 4, 1, 1), 3);
-            
+
             // Test if current game is completed
 
             return completed;
