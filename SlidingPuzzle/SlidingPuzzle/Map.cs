@@ -13,8 +13,8 @@ namespace SlidingPuzzle
     public class Map
     {
         #region Constants
-        public const int DEFAULT_TILES_X = 3;
-        public const int DEFAULT_TILES_Y = 4;
+        public const int DEFAULT_NB_TILES_WIDTH = 3;
+        public const int DEFAULT_NB_TILES_HEIGHT = 4;
         #endregion
 
         #region Fields & Properties
@@ -28,7 +28,7 @@ namespace SlidingPuzzle
         #endregion
 
         #region Constructors
-        public Map() : this(new Tile[DEFAULT_TILES_X, DEFAULT_TILES_Y])
+        public Map() : this(new Tile[DEFAULT_NB_TILES_WIDTH, DEFAULT_NB_TILES_HEIGHT])
         {
             // NO CODE
         }
@@ -41,6 +41,11 @@ namespace SlidingPuzzle
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <returns></returns>
         private bool RectangleConditionsAreCorrect(Rectangle rect)
         {
             return (rect.X >= 0 &&
@@ -51,6 +56,11 @@ namespace SlidingPuzzle
                     rect.Y + rect.Height <= Tiles.GetLength(1));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <returns></returns>
         public bool IsAllowed(Rectangle rect)
         {
             bool allowed = true;
@@ -65,6 +75,16 @@ namespace SlidingPuzzle
                 allowed = false;
 
             return allowed;
+        }
+
+        /// <summary>
+        /// Method to get a tile
+        /// </summary>
+        /// <param name="point">Point parameter</param>
+        /// <returns>Tile class</returns>
+        public Tile GetTile(Point point)
+        {
+            return this.Tiles[point.X, point.Y];
         }
         #endregion
     }

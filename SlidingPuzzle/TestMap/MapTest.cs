@@ -84,8 +84,8 @@ namespace TestMap
         public void MapConstructorTest1()
         {
             Map target = new Map();
-            Assert.AreEqual(Map.DEFAULT_TILES_X, target.Tiles.GetLength(0));
-            Assert.AreEqual(Map.DEFAULT_TILES_Y, target.Tiles.GetLength(1));
+            Assert.AreEqual(Map.DEFAULT_NB_TILES_WIDTH, target.Tiles.GetLength(0));
+            Assert.AreEqual(Map.DEFAULT_NB_TILES_HEIGHT, target.Tiles.GetLength(1));
         }
 
         /// <summary>
@@ -135,12 +135,8 @@ namespace TestMap
 
             Tile[,] tiles = new Tile[10, 20];
             for (int i = 0; i < 10; i++)
-            {
                 for (int j = 0; j < 20; j++)
-                {
                     tiles[i, j] = new Tile();
-                }
-            }
 
             target = new Map(tiles);
             Assert.AreEqual(10, target.Tiles.GetLength(0));
