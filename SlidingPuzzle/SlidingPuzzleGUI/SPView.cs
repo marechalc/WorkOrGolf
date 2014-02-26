@@ -118,17 +118,16 @@ namespace SlidingPuzzleGUI
 
             Controller.NewPieces(myPieces);
 
-            Controller.AddImage(0, Image.FromFile("img/map1.jpg"));
-            Controller.AddImage(1, Image.FromFile("img/map2.jpg"));
-            Controller.AddImage(2, Image.FromFile("img/work1.jpg"));
-            Controller.AddImage(3, Image.FromFile("img/work2.jpg"));
-            Controller.AddImage(4, Image.FromFile("img/work3.jpg"));
-            Controller.AddImage(5, Image.FromFile("img/work4.jpg"));
-            Controller.AddImage(6, Image.FromFile("img/golf1.jpg"));
-            Controller.AddImage(7, Image.FromFile("img/golf2.jpg"));
-            Controller.AddImage(8, Image.FromFile("img/golf3.jpg"));
-            Controller.AddImage(8, Image.FromFile("img/golf4.jpg"));
-            //SlidingPuzzleGUI.Properties.Resources.map1;
+            Controller.AddImage(0, SlidingPuzzleGUI.Properties.Resources.map1);
+            Controller.AddImage(1, SlidingPuzzleGUI.Properties.Resources.map2);
+            Controller.AddImage(2, SlidingPuzzleGUI.Properties.Resources.golf1);
+            Controller.AddImage(3, SlidingPuzzleGUI.Properties.Resources.golf2);
+            Controller.AddImage(4, SlidingPuzzleGUI.Properties.Resources.golf3);
+            Controller.AddImage(5, SlidingPuzzleGUI.Properties.Resources.golf4);
+            Controller.AddImage(6, SlidingPuzzleGUI.Properties.Resources.work1);
+            Controller.AddImage(7, SlidingPuzzleGUI.Properties.Resources.work2);
+            Controller.AddImage(8, SlidingPuzzleGUI.Properties.Resources.work3);
+            Controller.AddImage(8, SlidingPuzzleGUI.Properties.Resources.work4);
         }
 
         private void panGame_Paint(object sender, PaintEventArgs e)
