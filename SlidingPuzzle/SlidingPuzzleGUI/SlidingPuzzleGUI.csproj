@@ -81,6 +81,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -91,6 +92,36 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\golf1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\golf2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\golf3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\golf4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\map1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\map2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\work1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\work2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\work3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\work4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
