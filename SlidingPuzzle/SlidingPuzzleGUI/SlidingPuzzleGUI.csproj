@@ -94,34 +94,34 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\golf1.jpg" />
+    <None Include="Resources\golf1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\golf2.jpg" />
+    <None Include="Resources\golf2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\golf3.jpg" />
+    <None Include="Resources\golf3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\golf4.jpg" />
+    <None Include="Resources\golf4.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\map1.jpg" />
+    <None Include="Resources\map1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\map2.jpg" />
+    <None Include="Resources\map2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\work1.jpg" />
+    <None Include="Resources\work1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\work2.jpg" />
+    <None Include="Resources\work2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\work3.jpg" />
+    <None Include="Resources\work3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\work4.jpg" />
+    <None Include="Resources\work4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
