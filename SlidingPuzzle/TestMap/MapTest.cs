@@ -96,15 +96,14 @@ namespace TestMap
         {
             Tile[,] tiles = new Tile[10, 10];
             for (int i = 0; i < 10; i++)
-            {
                 for (int j = 0; j < 10; j++)
-                {
                     tiles[i, j] = new Tile();
-                }
-            }
+
+
             Map target = new Map(tiles);
             bool actual;
             for (int i = -5; i < 15; i++)
+            {
                 for (int j = -5; j < 15; j++)
                 {
                     for (int k = -5; k < 15; k++)
@@ -122,6 +121,7 @@ namespace TestMap
                             Assert.AreNotEqual(true, actual);
                     }
                 }
+            }
         }
 
         /// <summary>
