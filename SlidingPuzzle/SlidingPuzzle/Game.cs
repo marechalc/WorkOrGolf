@@ -126,6 +126,37 @@ namespace SlidingPuzzle
         /// <param name="p"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
+        private IEnumerable<Point> PointsNextToPiece(Piece p, Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    for (int x = 0; x < p.Rect.Width; x++)
+                        yield return new Point(x, p.Rect.Top-1);
+                    break;
+                case Direction.Down:
+                    for (int x = 0; x < p.Rect.Width; x++)
+                        yield return new Point(x, p.Rect.Bottom);
+                    break;
+                case Direction.Left:
+                    for (int y = 0; y < p.Rect.Height; y++)
+                        yield return new Point(p.Rect.Left - 1, y);
+                    break;
+                case Direction.Right:
+                    for (int y = 0; y < p.Rect.Height; y++)
+                        yield return new Point(p.Rect.Right, y);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         private bool CanMove(Piece p, Direction direction)
         {
             Point pointDirection = DirectionToPoint(direction);
@@ -236,6 +267,37 @@ namespace SlidingPuzzle
 
             return completed;
         }
+
+        public int[,] GetSymbolsMap()
+        {
+            int[,] symbolsMap = new int[Width, Height];
+
+
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    symbolsMap[x, y] = Map.Tiles[x, y].SymbolId;
+                }
+            }
+
+            foreach (Piece piece in Pieces)
+            {
+                for (int x = piece.Rect.Left; x < piece.Rect.Right; x++)
+                {
+                    for (int y = piece.Rect.Top; y < piece.Rect.Bottom; y++)
+                    {
+                        symbolsMap[x, y] = piece.SymbolId;
+                    }
+                }
+
+            }
+
+            return symbolsMap;
+        }
+
         #endregion
     }
+
+
 }

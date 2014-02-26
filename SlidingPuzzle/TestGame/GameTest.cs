@@ -16,6 +16,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
 using System.Text;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TestGame
 {
@@ -498,7 +500,19 @@ namespace TestGame
             ArraysAreEqual(expected, actual);
             Assert.AreEqual("*#\n* \n", GameToString(target));
 
-            //TODO: 2D games, pieces bigger than 1x1
+            //2D games, pieces bigger than 1x1
+
+            target = new Game(new Map(new Tile[2, 2] { { new Tile(), new Tile() }, { new Tile(), new Tile() } }), new Piece[] { new Piece(new Rectangle(0, 0, 1, 2), 2) });
+            // This game is 2x2 map with every tiles allowed and two 1x1 pieces in the first two column
+            Assert.AreEqual("* \n* \n", GameToString(target));
+
+            /*
+            p = new Point(0, 0);
+            expected = new Direction[] { Direction.Right };
+            actual = target.Move(p);
+            ArraysAreEqual(expected, actual);
+            Assert.AreEqual(" *\n *\n", GameToString(target));
+            */
 
         }
 
@@ -538,6 +552,38 @@ namespace TestGame
             actual = target.Move(p, Direction.Right);
             Assert.AreEqual(expected, actual);
             Assert.AreEqual("* *\n", GameToString(target));
+        }
+
+        /// <summary>
+        ///Test pour PointsNextToPiece
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("SlidingPuzzle.exe")]
+        public void PointsNextToPieceTest()
+        {
+
+
+            Game_Accessor target = new Game_Accessor();
+            Piece p = new Piece(new Rectangle(0, 0, 1, 1), 1);
+
+            Point[] expected = new Point[] { new Point(0,1) };
+            IEnumerable<Point> actual = target.PointsNextToPiece(p, Direction.Down);
+            ArraysAreEqual(expected, actual.ToArray());
+
+            expected = new Point[] { new Point(0, -1) };
+            actual = target.PointsNextToPiece(p, Direction.Up);
+            ArraysAreEqual(expected, actual.ToArray());
+
+            expected = new Point[] { new Point(-1, 0) };
+            actual = target.PointsNextToPiece(p, Direction.Left);
+            ArraysAreEqual(expected, actual.ToArray());
+
+            expected = new Point[] { new Point(1, 0) };
+            actual = target.PointsNextToPiece(p, Direction.Right);
+            ArraysAreEqual(expected, actual.ToArray());
+
+            //TODO: piece bigger than 1x1
+            
         }
     }
 }
