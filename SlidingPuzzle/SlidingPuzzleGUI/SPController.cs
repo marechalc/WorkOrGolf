@@ -79,12 +79,27 @@ namespace SlidingPuzzleGUI
 
         public int GetId(Point point)
         {
-
+            return 0;
         }
 
         public Image GetImg(int id)
         {
             return this.Model.GetImg(id);
+        }
+
+        public void NewMap(int[,] map)
+        {
+
+        }
+
+        public void NewPieces(int[,] pieces)
+        {
+
+        }
+
+        public void AddImage(int id, Image img)
+        {
+
         }
     }
 }
