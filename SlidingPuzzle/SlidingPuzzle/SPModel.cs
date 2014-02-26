@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using SlidingPuzzle;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Drawing;
 
 namespace SlidingPuzzle
 {
@@ -16,6 +18,13 @@ namespace SlidingPuzzle
 
         #region fields & get/set
         private Game _game;
+        private Dictionary<int, Image> _images;
+
+        public Dictionary<int, Image> Images
+        {
+            get { return _images; }
+            set { _images = value; }
+        }
 
         internal Game Game
         {
@@ -35,6 +44,7 @@ namespace SlidingPuzzle
         /// </summary>
         public SPModel()
         {
+            this.Images = new Dictionary<int, Image>();
             // throw new NotImplementedException(); // The devil is hiding in the details.
         }
 
@@ -54,6 +64,26 @@ namespace SlidingPuzzle
             Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
             this.Game = (Game)formatter.Deserialize(stream);
             stream.Close();
+        }
+
+        public void Move(Point point, Direction direction)
+        {
+            this.Game.Move(point, direction);
+        }
+
+        public Direction[] Move(Point point)
+        {
+            return this.Game.Move(point);
+        }
+
+        public int GetId(Point point)
+        {
+            this.Game.Map.Tiles[
+        }
+
+        public Image GetImg(int id)
+        {
+            return this.Images[id];
         }
     }
 }

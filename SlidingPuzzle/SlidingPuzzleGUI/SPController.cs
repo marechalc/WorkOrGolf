@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SlidingPuzzle;
+using System.Drawing;
 
 namespace SlidingPuzzleGUI
 {
@@ -64,6 +65,26 @@ namespace SlidingPuzzleGUI
         public void SaveGame(string filename)
         {
             this.Model.Serialize(filename);
+        }
+
+        public void Move(Point point, Direction direction)
+        {
+            this..Model.Move(point, direction);
+        }
+
+        public Direction[] Move(Point point)
+        {
+            return this.Model.Move(point);
+        }
+
+        public int GetId(Point point)
+        {
+
+        }
+
+        public Image GetImg(int id)
+        {
+            return this.Model.GetImg(id);
         }
     }
 }
