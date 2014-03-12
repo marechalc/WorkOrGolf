@@ -16,13 +16,17 @@ namespace SlidingPuzzle
     {
         const string DEFAULT_SAVE_FILENAME = "MyGame";
 
+
         #region fields & get/set
         private Game _game;
         private Dictionary<int, Image> _images;
 
         public Dictionary<int, Image> Images
         {
-            get { return _images; }
+            get {
+                if (_images == null)
+                    _images = new Dictionary<int, Image>(); //Lazy initialization
+                return _images; }
             set { _images = value; }
         }
 
@@ -44,8 +48,7 @@ namespace SlidingPuzzle
         /// </summary>
         public SPModel()
         {
-            this.Images = new Dictionary<int, Image>();
-            // throw new NotImplementedException(); // The devil is hiding in the details.
+            //No code
         }
 
         public void Serialize(string filename = DEFAULT_SAVE_FILENAME)
@@ -86,5 +89,45 @@ namespace SlidingPuzzle
         {
             return this.Images[id];
         }
+
+        public void NewMap(int[,] map)
+        {
+            Tile[,] tiles = new Tile[map.GetLength(0), map.GetLength(1)];
+            Boolean isAllowed;
+            for (int i = 0; i < map.GetLength(0); i++)
+			{
+			    for (int j = 0; j < map.GetLength(1); j++)
+			    {
+                    isAllowed = true;
+                    if (map[i, j] == 1) //If symbolId equals 1, then it's an unallowed tile
+                    {
+                        isAllowed = false;
+                    }                      
+			        tiles[i, j] = new Tile(isAllowed, map[i, j]);
+			    }
+			}
+            this.Game.Map = new Map(tiles);
+
+        }
+
+        public void NewPieces(int[,] pieces)
+        {
+            List<Piece> newPieces = new List<Piece>();
+            for (int i = 0; i < pieces.GetLength(0); i++)
+			{
+			    for (int j = 0; j < pieces.GetLength(1); j++)
+			    {
+			        newPieces.Add(new Piece(new Rectangle(new Point(i, j), new Size(1,1)), pieces[i, j]));
+			    }
+			}
+            this.Game.Pieces = newPieces.ToArray();
+
+        }
+
+        public void AddImage(int id, Image img)
+        {
+            Images.Add(id, img);
+        }
+
     }
 }
