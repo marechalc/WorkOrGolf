@@ -48,7 +48,7 @@ namespace SlidingPuzzle
             // throw new NotImplementedException(); // The devil is hiding in the details.
         }
 
-        public void Serialize(string filename)
+        public void Serialize(string filename = DEFAULT_SAVE_FILENAME)
         {
             // Reference : http://msdn.microsoft.com/.../lib.../4abbf6k0(v=vs.110).aspx
             IFormatter formatter = new BinaryFormatter();
@@ -57,7 +57,7 @@ namespace SlidingPuzzle
             stream.Close();
         }
 
-        public void Unserialize(string filename)
+        public void Unserialize(string filename = DEFAULT_SAVE_FILENAME)
         {
             // Reference : http://msdn.microsoft.com/.../lib.../4abbf6k0(v=vs.110).aspx
             IFormatter formatter = new BinaryFormatter();
@@ -76,9 +76,10 @@ namespace SlidingPuzzle
             return this.Game.Move(point);
         }
 
-        public int GetId(Point point)
+        public int[,] GetSymbolsMap()
         {
-            return this.Game.Map.Tiles[point.X, point.Y].SymbolId;
+            //return this.Game.Map.Tiles[point.X, point.Y].SymbolId;
+            return this.Game.GetSymbolsMap();
         }
 
         public Image GetImg(int id)
