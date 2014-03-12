@@ -47,7 +47,7 @@
             this.panGame.BackColor = System.Drawing.Color.White;
             this.panGame.Location = new System.Drawing.Point(12, 35);
             this.panGame.Name = "panGame";
-            this.panGame.Size = new System.Drawing.Size(400, 500);
+            this.panGame.Size = new System.Drawing.Size(512, 640);
             this.panGame.TabIndex = 1;
             this.panGame.Paint += new System.Windows.Forms.PaintEventHandler(this.panGame_Paint);
             this.panGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panGame_MouseClick);
@@ -59,7 +59,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(426, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(534, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(426, 541);
+            this.ClientSize = new System.Drawing.Size(534, 690);
             this.Controls.Add(this.panGame);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
