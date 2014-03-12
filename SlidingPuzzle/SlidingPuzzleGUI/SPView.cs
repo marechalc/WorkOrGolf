@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Damien Loic & Sampaio Nuno
+// 12.03.2014
+// SPView
+// Create methods for move a piece with his direction
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SlidingPuzzle;
 
 namespace SlidingPuzzleGUI
 {
@@ -40,7 +45,7 @@ namespace SlidingPuzzleGUI
         #region Methods
         public void UpdateView()
         {
-
+            panGame.Invalidate();
         }
 
         private void menuNewGame_Click(object sender, System.EventArgs e)
@@ -127,24 +132,49 @@ namespace SlidingPuzzleGUI
             Controller.AddImage(6, SlidingPuzzleGUI.Properties.Resources.work1);
             Controller.AddImage(7, SlidingPuzzleGUI.Properties.Resources.work2);
             Controller.AddImage(8, SlidingPuzzleGUI.Properties.Resources.work3);
-            Controller.AddImage(8, SlidingPuzzleGUI.Properties.Resources.work4);
+            Controller.AddImage(9, SlidingPuzzleGUI.Properties.Resources.work4);
         }
 
         private void panGame_Paint(object sender, PaintEventArgs e)
         {
-            for (int i = 0; i < MAP_WIDTH; i++)
-                for (int j = 0; j < MAP_HEIGHT; j++)
+            int[,] ids = Controller.GetIds();
+            for (int x = 0; x < MAP_WIDTH; x++)
+                for (int y = 0; y < MAP_HEIGHT; y++)
 			    {
-                    Bitmap bmp = Controller.GetImg(Controller.GetId(new Point(i,j)));
-                    gra.DrawImage(bmp, i * bmp.Width, j * bmp.Width);
+                    Image bmp = Controller.GetImg(ids[x,y]);
+                    gra.DrawImage(bmp, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
                 }
+        }
+
+        /// <summary>
+        /// Return the direction corresponding to the angle
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns></returns>
+        private Direction AngleToDirection(double angle)
+        {
+            Direction direction;
+            if (angle < Math.PI / 4 && angle > -Math.PI / 4)
+                direction = Direction.Right;
+            else if (angle > Math.PI / 4 && angle < 3*Math.PI / 4)
+                direction = Direction.Up;
+            else if (angle < -Math.PI / 4 && angle > - 3 * Math.PI / 4)
+                direction = Direction.Down;
+            else
+                direction = Direction.Left;
+            return direction;    
         }
 
         private void panGame_MouseClick(object sender, MouseEventArgs e)
         {
-            int x = (int)(e.X / TILE_SIZE);
-            int y = (int)(e.Y / TILE_SIZE);
-            Controller.Move(new Point(x, y));
+            int pieceX = (int)(e.X / TILE_SIZE);
+            int pieceY = (int)(e.Y / TILE_SIZE);
+
+            int pieceCenterPixelX = pieceX * TILE_SIZE + TILE_SIZE/2;
+            int pieceCenterPixelY = pieceY * TILE_SIZE + TILE_SIZE / 2;
+
+            double angle = Math.Atan2(pieceCenterPixelY - e.Y, e.X - pieceCenterPixelX);
+            Controller.Move(new Point(pieceX, pieceY), AngleToDirection(angle));
         }
     }
 }
