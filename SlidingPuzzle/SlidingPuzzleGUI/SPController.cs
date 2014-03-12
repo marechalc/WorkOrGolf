@@ -69,7 +69,7 @@ namespace SlidingPuzzleGUI
 
         public void Move(Point point, Direction direction)
         {
-            this..Model.Move(point, direction);
+            this.Model.Move(point, direction);
         }
 
         public Direction[] Move(Point point)
@@ -77,9 +77,9 @@ namespace SlidingPuzzleGUI
             return this.Model.Move(point);
         }
 
-        public int GetId(Point point)
+        public int[,] GetIds()
         {
-            return 0;
+            return this.Model.GetSymbolsMap();
         }
 
         public Image GetImg(int id)
