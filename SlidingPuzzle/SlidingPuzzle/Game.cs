@@ -66,7 +66,7 @@ namespace SlidingPuzzle
         /// Designed constructor
         /// </summary>
         public Game()
-            : this(new Map(), new Piece[DEFAULT_NB_PIECES])
+            : this(new Map(), new Piece[DEFAULT_NB_PIECES] {new Piece()})
         { } // No code
 
         /// <summary>
