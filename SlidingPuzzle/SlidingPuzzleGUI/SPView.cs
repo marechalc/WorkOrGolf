@@ -1,8 +1,4 @@
-﻿// Damien Loic & Sampaio Nuno
-// 12.03.2014
-// SPView
-// Create methods for move a piece with his direction
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +12,13 @@ namespace SlidingPuzzleGUI
 {
     public partial class SPView : Form
     {
+        #region Constants
         const string DEFAULT_FILENAME = "MyGame";
         const int MAP_WIDTH = 4;
         const int MAP_HEIGHT = 5;
-        const int TILE_SIZE = 100;
+        const int TILE_SIZE = 128;
         const string DEFAULT_FILES_FILTER = "bin files (*.bin)|*.bin";
+        #endregion
 
         #region Fields & Properties
         private SPController _controller;
@@ -121,7 +119,6 @@ namespace SlidingPuzzleGUI
             myPieces[2, 4] = 8;
             myPieces[3, 4] = 9;
 
-            Controller.NewPieces(myPieces);
 
             Controller.AddImage(0, SlidingPuzzleGUI.Properties.Resources.map1);
             Controller.AddImage(1, SlidingPuzzleGUI.Properties.Resources.map2);
