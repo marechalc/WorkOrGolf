@@ -70,11 +70,12 @@ namespace SlidingPuzzleGUI
         public void Move(Point point, Direction direction)
         {
             this.Model.Move(point, direction);
+            this.View.UpdateView();
         }
 
         public Direction[] Move(Point point)
         {
-            return this.Model.Move(point);
+            return this.Model.Move(point);            
         }
 
         public int[,] GetIds()
@@ -89,17 +90,20 @@ namespace SlidingPuzzleGUI
 
         public void NewMap(int[,] map)
         {
-
+            this.Model.NewMap(map);
+            this.View.UpdateView();
         }
 
         public void NewPieces(int[,] pieces)
         {
-
+            this.Model.NewPieces(pieces);
+            this.View.UpdateView();
         }
 
         public void AddImage(int id, Image img)
         {
-
+            this.Model.AddImage(id, img);
+            this.View.UpdateView();
         }
     }
 }
