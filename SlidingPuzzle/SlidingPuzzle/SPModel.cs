@@ -78,7 +78,7 @@ namespace SlidingPuzzle
 
         public int GetId(Point point)
         {
-            this.Game.Map.Tiles[
+            return this.Game.Map.Tiles[point.X, point.Y].SymbolId;
         }
 
         public Image GetImg(int id)
