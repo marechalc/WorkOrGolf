@@ -110,11 +110,11 @@
             // sfd
             // 
             this.sfd.DefaultExt = "puzzle";
-            this.sfd.Filter = "Puzlle file|*.puzzle";
+            this.sfd.Filter = "Puzzle file|*.puzzle";
             // 
             // ofd
             // 
-            this.ofd.Filter = "Puzlle file|*.puzzle";
+            this.ofd.Filter = "Puzzle file|*.puzzle";
             // 
             // statusStrip1
             // 
