@@ -36,6 +36,14 @@ namespace SlidingPuzzle
         public Map(Tile[,] tiles)
         {
             this.Tiles = tiles;
+            for (int x = 0; x < Tiles.GetLength(0); x++)
+            {
+                for (int y = 0; y < Tiles.GetLength(1); y++)
+                {
+                    if (Tiles[x, y] == null)
+                        Tiles[x, y] = new Tile();
+                }
+            }
         }
         #endregion
 
