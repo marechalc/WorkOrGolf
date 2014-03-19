@@ -35,7 +35,6 @@ namespace SlidingPuzzleGUI
         {
             InitializeComponent();
             this.Controller = new SPController(this);
-
             newGameToolStripMenuItem_Click(null, null);
         }
         #endregion
@@ -43,6 +42,7 @@ namespace SlidingPuzzleGUI
         #region Methods
         public void UpdateView()
         {
+            this.lblStatusStrip_Count.Text = "Number of step: " + this.Controller.GetScore().ToString();
             panGame.Invalidate();
         }
 
@@ -175,6 +175,11 @@ namespace SlidingPuzzleGUI
 
             double angle = Math.Atan2(pieceCenterPixelY - e.Y, e.X - pieceCenterPixelX);
             Controller.Move(new Point(pieceX, pieceY), AngleToDirection(angle));
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("WorkOrGolf\nTechniciens ES deuxième année A.K.A Techniporcs\n2013/2014 - CFPTI - Genève");
         }
     }
 }

@@ -48,6 +48,7 @@ namespace SlidingPuzzleGUI
         public void NewGame()
         {
             this.Model.Game = new Game(new Map(new Tile[33, 25]), new Piece[3]);
+            this.Model.Score = 0;
             this.View.UpdateView();
         }
 
@@ -67,10 +68,16 @@ namespace SlidingPuzzleGUI
             this.Model.Serialize(filename);
         }
 
-        public void Move(Point point, Direction direction)
+        public bool Move(Point point, Direction direction)
         {
-            this.Model.Move(point, direction);
-            this.View.UpdateView();
+            bool move = false;
+            move = this.Model.Move(point, direction);
+            if (move)
+            {
+                this.Model.Score++;
+                this.View.UpdateView();
+            }
+            return move;
         }
 
         public Direction[] Move(Point point)
@@ -104,6 +111,11 @@ namespace SlidingPuzzleGUI
         {
             this.Model.AddImage(id, img);
             this.View.UpdateView();
+        }
+
+        public int GetScore()
+        {
+            return this.Model.Score;
         }
     }
 }

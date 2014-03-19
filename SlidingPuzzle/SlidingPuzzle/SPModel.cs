@@ -20,6 +20,13 @@ namespace SlidingPuzzle
         #region fields & get/set
         private Game _game;
         private Dictionary<int, Image> _images;
+        private int _score;
+
+        public int Score
+        {
+            get { return _score; }
+            set { _score = value; }
+        }
 
         public Dictionary<int, Image> Images
         {
@@ -43,6 +50,7 @@ namespace SlidingPuzzle
             }
             set { _game = value; }
         }
+
         #endregion
 
         /// <summary>
@@ -50,7 +58,7 @@ namespace SlidingPuzzle
         /// </summary>
         public SPModel()
         {
-            //No code
+            this.Score = 0;
         }
 
         public void Serialize(string filename = DEFAULT_SAVE_FILENAME)
@@ -71,9 +79,10 @@ namespace SlidingPuzzle
             stream.Close();
         }
 
-        public void Move(Point point, Direction direction)
+        public bool Move(Point point, Direction direction)
         {
-            this.Game.Move(point, direction);
+
+            return this.Game.Move(point, direction);
         }
 
         public Direction[] Move(Point point)
