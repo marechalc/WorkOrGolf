@@ -57,7 +57,7 @@ namespace SlidingPuzzleGUI
                     NewGame();
                 else
                     ExitGame();
-                    
+
             }
         }
 
@@ -94,7 +94,8 @@ namespace SlidingPuzzleGUI
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewGame();
+            if (MessageBox.Show("You are about to start a new game, you will lose your current progression. Proceed ?", "New game", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                NewGame();
         }
 
         private void panGame_Paint(object sender, PaintEventArgs e)
@@ -109,8 +110,8 @@ namespace SlidingPuzzleGUI
 
             for (int x = 0; x < MAP_WIDTH; x++)
                 for (int y = 0; y < MAP_HEIGHT; y++)
-			    {
-                    Image bmp = Controller.GetImg(ids[x,y]);
+                {
+                    Image bmp = Controller.GetImg(ids[x, y]);
                     gra.DrawImage(bmp, _mapCenter.X + x * _tileSize, _mapCenter.Y + y * _tileSize, _tileSize, _tileSize);
                 }
         }
@@ -225,7 +226,7 @@ namespace SlidingPuzzleGUI
                 Controller.LoadGame(ofd.FileName);
                 UpdateView();
             }
-		}
+        }
 
         private void SPView_Resize(object sender, EventArgs e)
         {
