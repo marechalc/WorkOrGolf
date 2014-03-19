@@ -37,6 +37,9 @@ namespace SlidingPuzzleGUI
             InitializeComponent();
             this.Controller = new SPController(this);
             gra = panGame.CreateGraphics();
+
+            newGameToolStripMenuItem_Click(null, null);
+            panGame_Paint(null, null);
         }
         #endregion
 
@@ -118,6 +121,8 @@ namespace SlidingPuzzleGUI
             myPieces[1, 4] = 7;
             myPieces[2, 4] = 8;
             myPieces[3, 4] = 9;
+
+            Controller.NewPieces(myPieces);
 
 
             Controller.AddImage(0, SlidingPuzzleGUI.Properties.Resources.map1);

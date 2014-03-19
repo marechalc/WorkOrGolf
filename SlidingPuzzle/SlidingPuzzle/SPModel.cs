@@ -23,10 +23,12 @@ namespace SlidingPuzzle
 
         public Dictionary<int, Image> Images
         {
-            get {
+            get
+            {
                 if (_images == null)
                     _images = new Dictionary<int, Image>(); //Lazy initialization
-                return _images; }
+                return _images;
+            }
             set { _images = value; }
         }
 
@@ -95,17 +97,17 @@ namespace SlidingPuzzle
             Tile[,] tiles = new Tile[map.GetLength(0), map.GetLength(1)];
             Boolean isAllowed;
             for (int i = 0; i < map.GetLength(0); i++)
-			{
-			    for (int j = 0; j < map.GetLength(1); j++)
-			    {
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
                     isAllowed = true;
                     if (map[i, j] == 1) //If symbolId equals 1, then it's an unallowed tile
                     {
                         isAllowed = false;
-                    }                      
-			        tiles[i, j] = new Tile(isAllowed, map[i, j]);
-			    }
-			}
+                    }
+                    tiles[i, j] = new Tile(isAllowed, map[i, j]);
+                }
+            }
             this.Game.Map = new Map(tiles);
 
         }
@@ -114,12 +116,13 @@ namespace SlidingPuzzle
         {
             List<Piece> newPieces = new List<Piece>();
             for (int i = 0; i < pieces.GetLength(0); i++)
-			{
-			    for (int j = 0; j < pieces.GetLength(1); j++)
-			    {
-			        newPieces.Add(new Piece(new Rectangle(new Point(i, j), new Size(1,1)), pieces[i, j]));
-			    }
-			}
+            {
+                for (int j = 0; j < pieces.GetLength(1); j++)
+                {
+                    if (pieces[i, j] != 0)
+                        newPieces.Add(new Piece(new Rectangle(new Point(i, j), new Size(1, 1)), pieces[i, j]));
+                }
+            }
             this.Game.Pieces = newPieces.ToArray();
 
         }
