@@ -158,6 +158,7 @@
             this.Name = "SPView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sliding puzzles";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SPView_FormClosing);
             this.Resize += new System.EventHandler(this.SPView_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

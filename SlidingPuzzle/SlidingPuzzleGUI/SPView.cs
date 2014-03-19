@@ -57,7 +57,6 @@ namespace SlidingPuzzleGUI
                     NewGame();
                 else
                     ExitGame();
-
             }
         }
 
@@ -84,11 +83,6 @@ namespace SlidingPuzzleGUI
 
             if (this.sfd.ShowDialog() == DialogResult.OK)
                 this.Controller.SaveGame(this.sfd.FileName);
-        }
-
-        private void menuQuit_Click(object sender, System.EventArgs e)
-        {
-            this.Close();
         }
         #endregion
 
@@ -233,15 +227,20 @@ namespace SlidingPuzzleGUI
             panGame.Invalidate();
         }
 
-        private void ExitGame()
+        private void ExitGame(FormClosingEventArgs e = null)
         {
-            if (MessageBox.Show("Do you really want to leave the game ?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                Application.Exit();
+            Application.Exit();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExitGame();
+        }
+
+        private void SPView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Do you really want to leave the game ?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                e.Cancel = true;
         }
     }
 }
