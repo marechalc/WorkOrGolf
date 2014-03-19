@@ -53,8 +53,11 @@ namespace SlidingPuzzleGUI
             panGame.Invalidate();
             if (this.Controller.IsCompleted())
             {
-                MessageBox.Show("Vous avez gagné !");
-                NewGame();
+                if (MessageBox.Show(string.Format("You win with {0} steps ! Do you want to restart ?", this.Controller.GetScore()), "You win", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    NewGame();
+                else
+                    ExitGame();
+                    
             }
         }
 
@@ -227,6 +230,17 @@ namespace SlidingPuzzleGUI
         private void SPView_Resize(object sender, EventArgs e)
         {
             panGame.Invalidate();
+        }
+
+        private void ExitGame()
+        {
+            if (MessageBox.Show("Do you really want to leave the game ?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                Application.Exit();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExitGame();
         }
     }
 }
