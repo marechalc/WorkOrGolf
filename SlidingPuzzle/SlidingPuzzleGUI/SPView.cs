@@ -22,7 +22,6 @@ namespace SlidingPuzzleGUI
 
         #region Fields & Properties
         private SPController _controller;
-        private Graphics gra;
 
         internal SPController Controller
         {
@@ -36,10 +35,8 @@ namespace SlidingPuzzleGUI
         {
             InitializeComponent();
             this.Controller = new SPController(this);
-            gra = panGame.CreateGraphics();
 
             newGameToolStripMenuItem_Click(null, null);
-            panGame_Paint(null, null);
         }
         #endregion
 
@@ -139,6 +136,7 @@ namespace SlidingPuzzleGUI
 
         private void panGame_Paint(object sender, PaintEventArgs e)
         {
+            Graphics gra = e.Graphics;
             int[,] ids = Controller.GetIds();
             for (int x = 0; x < MAP_WIDTH; x++)
                 for (int y = 0; y < MAP_HEIGHT; y++)

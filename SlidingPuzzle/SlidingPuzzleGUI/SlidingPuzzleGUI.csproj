@@ -61,6 +61,9 @@
     <Compile Include="..\SlidingPuzzle\Tile.cs">
       <Link>Tile.cs</Link>
     </Compile>
+    <Compile Include="DoubleBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SPView.cs">
       <SubType>Form</SubType>
     </Compile>
