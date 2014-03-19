@@ -104,7 +104,7 @@ namespace SlidingPuzzle
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
-        private Point DirectionToPoint(Direction d)
+        private Point DirectionToVector(Direction d)
         {
             switch (d)
             {
@@ -160,8 +160,8 @@ namespace SlidingPuzzle
         /// <returns></returns>
         private bool CanMove(Piece p, Direction direction)
         {
-            Point pointDirection = DirectionToPoint(direction);
-            Point nextPoint = new Point(p.Rect.X + pointDirection.X, p.Rect.Y + pointDirection.Y);
+            Point vectorDirection = DirectionToVector(direction);
+            Point nextPoint = new Point(p.Rect.X + vectorDirection.X, p.Rect.Y + vectorDirection.Y);
 
             if (nextPoint.X < 0 || nextPoint.X >= Width || nextPoint.Y < 0 || nextPoint.Y >= Height)
             {
@@ -216,7 +216,7 @@ namespace SlidingPuzzle
         /// <param name="direction"></param>
         private void Move(Piece p, Direction direction)
         {
-            Point pointDirection = DirectionToPoint(direction);
+            Point vectorDirection = DirectionToVector(direction);
             Point nextPoint = new Point(p.Rect.X + pointDirection.X, p.Rect.Y + pointDirection.Y);
             Piece nextToPiece = GetPieceFromPoint(nextPoint);
             if (nextToPiece != null)
