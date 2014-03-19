@@ -55,8 +55,6 @@ namespace SlidingPuzzleGUI
             {
                 if (MessageBox.Show(string.Format("You win with {0} steps ! Do you want to restart ?", this.Controller.GetScore()), "You win", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     NewGame();
-                else
-                    ExitGame();
             }
         }
 
