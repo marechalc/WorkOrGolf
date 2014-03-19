@@ -253,15 +253,25 @@ namespace SlidingPuzzle
             bool completed = true;
             // Initialization of final pieces
             Piece[] piecesFinal = new Piece[8];
-            piecesFinal[0] = new Piece(new Rectangle(0, 0, 1, 1), 6);
-            piecesFinal[1] = new Piece(new Rectangle(1, 0, 1, 1), 7);
-            piecesFinal[2] = new Piece(new Rectangle(2, 0, 1, 1), 8);
-            piecesFinal[3] = new Piece(new Rectangle(3, 0, 1, 1), 9);
+            //piecesFinal[0] = new Piece(new Rectangle(0, 0, 1, 1), 6);
+            //piecesFinal[1] = new Piece(new Rectangle(1, 0, 1, 1), 7);
+            //piecesFinal[2] = new Piece(new Rectangle(2, 0, 1, 1), 8);
+            //piecesFinal[3] = new Piece(new Rectangle(3, 0, 1, 1), 9);
 
-            piecesFinal[4] = new Piece(new Rectangle(0, 4, 1, 1), 2);
-            piecesFinal[5] = new Piece(new Rectangle(1, 4, 1, 1), 3);
-            piecesFinal[6] = new Piece(new Rectangle(2, 4, 1, 1), 4);
-            piecesFinal[7] = new Piece(new Rectangle(3, 4, 1, 1), 5);
+            //piecesFinal[4] = new Piece(new Rectangle(0, 4, 1, 1), 2);
+            //piecesFinal[5] = new Piece(new Rectangle(1, 4, 1, 1), 3);
+            //piecesFinal[6] = new Piece(new Rectangle(2, 4, 1, 1), 4);
+            //piecesFinal[7] = new Piece(new Rectangle(3, 4, 1, 1), 5);
+
+            piecesFinal[0] = new Piece(new Rectangle(0, 0, 1, 1), 2);
+            piecesFinal[1] = new Piece(new Rectangle(1, 0, 1, 1), 3);
+            piecesFinal[2] = new Piece(new Rectangle(2, 0, 1, 1), 4);
+            piecesFinal[3] = new Piece(new Rectangle(3, 0, 1, 1), 5);
+
+            piecesFinal[4] = new Piece(new Rectangle(0, 4, 1, 1), 6);
+            piecesFinal[5] = new Piece(new Rectangle(1, 3, 1, 1), 7);
+            piecesFinal[6] = new Piece(new Rectangle(2, 4, 1, 1), 8);
+            piecesFinal[7] = new Piece(new Rectangle(3, 4, 1, 1), 9);
 
             // Test if current game is completed
             foreach (Piece piece in piecesFinal)

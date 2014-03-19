@@ -47,8 +47,8 @@ namespace SlidingPuzzleGUI
         /// </summary>
         public void NewGame()
         {
-            this.View.UpdateView();
-            this.Model.Score = 0;                    
+            this.Model.Score = 0;   
+            this.View.UpdateView();                             
         }
 
         /// <summary>

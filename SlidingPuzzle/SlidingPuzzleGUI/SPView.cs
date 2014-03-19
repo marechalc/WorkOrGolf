@@ -191,7 +191,7 @@ namespace SlidingPuzzleGUI
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("WorkOrGolf\nTechniciens ES deuxième année A.K.A Techniporcs\n2013/2014 - CFPTI - Genève");
+            MessageBox.Show("WorkOrGolf\n\nTechniciens ES deuxième année A.K.A. Techniporcs\n2013/2014 - CFPT-Informatique - Genève");
         }
     }
 }
