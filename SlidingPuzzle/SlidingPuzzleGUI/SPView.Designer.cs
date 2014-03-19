@@ -122,8 +122,8 @@
             // lblStatusStrip_Count
             // 
             this.lblStatusStrip_Count.Name = "lblStatusStrip_Count";
-            this.lblStatusStrip_Count.Size = new System.Drawing.Size(93, 17);
-            this.lblStatusStrip_Count.Text = "Number of step:";
+            this.lblStatusStrip_Count.Size = new System.Drawing.Size(106, 17);
+            this.lblStatusStrip_Count.Text = "Number of step(s):";
             // 
             // panGame
             // 

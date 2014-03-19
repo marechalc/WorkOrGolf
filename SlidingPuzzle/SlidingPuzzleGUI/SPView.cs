@@ -42,7 +42,7 @@ namespace SlidingPuzzleGUI
         #region Methods
         public void UpdateView()
         {
-            this.lblStatusStrip_Count.Text = "Number of step: " + this.Controller.GetScore().ToString();
+            this.lblStatusStrip_Count.Text = "Number of step(s): " + this.Controller.GetScore().ToString();
             panGame.Invalidate();
             if (this.Controller.IsCompleted())
             {
