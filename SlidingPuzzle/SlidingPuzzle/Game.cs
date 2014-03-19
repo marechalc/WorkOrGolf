@@ -104,7 +104,7 @@ namespace SlidingPuzzle
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
-        private Point DirectionToPoint(Direction d)
+        private Point DirectionToVector(Direction d)
         {
             switch (d)
             {
@@ -160,8 +160,8 @@ namespace SlidingPuzzle
         /// <returns></returns>
         private bool CanMove(Piece p, Direction direction)
         {
-            Point pointDirection = DirectionToPoint(direction);
-            Point nextPoint = new Point(p.Rect.X + pointDirection.X, p.Rect.Y + pointDirection.Y);
+            Point vectorDirection = DirectionToVector(direction);
+            Point nextPoint = new Point(p.Rect.X + vectorDirection.X, p.Rect.Y + vectorDirection.Y);
 
             if (nextPoint.X < 0 || nextPoint.X >= Width || nextPoint.Y < 0 || nextPoint.Y >= Height)
             {
@@ -203,7 +203,7 @@ namespace SlidingPuzzle
                     }
                 }
                 if (possiblesDirections.Count == 1)
-                    Move(piece, possiblesDirections[0]);
+                    MovePiece(piece, possiblesDirections[0]);
             }
 
             return possiblesDirections.ToArray();
@@ -214,14 +214,14 @@ namespace SlidingPuzzle
         /// </summary>
         /// <param name="p"></param>
         /// <param name="direction"></param>
-        private void Move(Piece p, Direction direction)
+        private void MovePiece(Piece p, Direction direction)
         {
-            Point pointDirection = DirectionToPoint(direction);
-            Point nextPoint = new Point(p.Rect.X + pointDirection.X, p.Rect.Y + pointDirection.Y);
+            Point vectorDirection = DirectionToVector(direction);
+            Point nextPoint = new Point(p.Rect.X + vectorDirection.X, p.Rect.Y + vectorDirection.Y);
             Piece nextToPiece = GetPieceFromPoint(nextPoint);
             if (nextToPiece != null)
             {
-                Move(nextToPiece, direction);
+                MovePiece(nextToPiece, direction);
             }
             p.Rect = new Rectangle(nextPoint.X, nextPoint.Y, p.Rect.Width, p.Rect.Height);
         }
@@ -239,7 +239,7 @@ namespace SlidingPuzzle
             bool moved = false;
             if (piece != null && CanMove(piece, direction))
             {
-                Move(piece, direction);
+                MovePiece(piece, direction);
                 moved = true;
             }
             return moved;
