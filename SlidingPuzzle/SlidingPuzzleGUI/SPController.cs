@@ -105,5 +105,10 @@ namespace SlidingPuzzleGUI
             this.Model.AddImage(id, img);
             this.View.UpdateView();
         }
+
+        public bool IsCompleted()
+        {
+            return this.Model.IsCompleted();
+        }
     }
 }
