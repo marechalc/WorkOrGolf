@@ -35,7 +35,7 @@ namespace SlidingPuzzleGUI
         {
             InitializeComponent();
             this.Controller = new SPController(this);
-            newGameToolStripMenuItem_Click(null, null);
+            NewGame();
         }
         #endregion
 
@@ -45,7 +45,10 @@ namespace SlidingPuzzleGUI
             this.lblStatusStrip_Count.Text = "Number of step: " + this.Controller.GetScore().ToString();
             panGame.Invalidate();
             if (this.Controller.IsCompleted())
+            {
                 MessageBox.Show("Vous avez gagné !");
+                NewGame();
+            }
         }
 
         private void menuNewGame_Click(object sender, System.EventArgs e)
@@ -80,6 +83,23 @@ namespace SlidingPuzzleGUI
         #endregion
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewGame();
+        }
+
+        private void panGame_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics gra = e.Graphics;
+            int[,] ids = Controller.GetIds();
+            for (int x = 0; x < MAP_WIDTH; x++)
+                for (int y = 0; y < MAP_HEIGHT; y++)
+			    {
+                    Image bmp = Controller.GetImg(ids[x,y]);
+                    gra.DrawImage(bmp, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                }
+        }
+
+        public void NewGame()
         {
             int[,] myMap = new int[MAP_WIDTH, MAP_HEIGHT];
             int[,] myPieces = new int[MAP_WIDTH, MAP_HEIGHT];
@@ -134,18 +154,8 @@ namespace SlidingPuzzleGUI
             Controller.AddImage(7, SlidingPuzzleGUI.Properties.Resources.work2);
             Controller.AddImage(8, SlidingPuzzleGUI.Properties.Resources.work3);
             Controller.AddImage(9, SlidingPuzzleGUI.Properties.Resources.work4);
-        }
 
-        private void panGame_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics gra = e.Graphics;
-            int[,] ids = Controller.GetIds();
-            for (int x = 0; x < MAP_WIDTH; x++)
-                for (int y = 0; y < MAP_HEIGHT; y++)
-			    {
-                    Image bmp = Controller.GetImg(ids[x,y]);
-                    gra.DrawImage(bmp, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-                }
+            Controller.NewGame();
         }
 
         /// <summary>

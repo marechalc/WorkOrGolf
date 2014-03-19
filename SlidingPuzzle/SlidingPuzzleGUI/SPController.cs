@@ -47,9 +47,8 @@ namespace SlidingPuzzleGUI
         /// </summary>
         public void NewGame()
         {
-            this.Model.Game = new Game(new Map(new Tile[33, 25]), new Piece[3]);
-            this.Model.Score = 0;
             this.View.UpdateView();
+            this.Model.Score = 0;                    
         }
 
         /// <summary>
@@ -97,20 +96,17 @@ namespace SlidingPuzzleGUI
 
         public void NewMap(int[,] map)
         {
-            this.Model.NewMap(map);
-            this.View.UpdateView();
+            this.Model.NewMap(map);            
         }
 
         public void NewPieces(int[,] pieces)
         {
-            this.Model.NewPieces(pieces);
-            this.View.UpdateView();
+            this.Model.NewPieces(pieces);            
         }
 
         public void AddImage(int id, Image img)
         {
             this.Model.AddImage(id, img);
-            this.View.UpdateView();
         }
 
         public int GetScore()

@@ -104,7 +104,7 @@ namespace SlidingPuzzle
         public void NewMap(int[,] map)
         {
             Tile[,] tiles = new Tile[map.GetLength(0), map.GetLength(1)];
-            Boolean isAllowed;
+            Boolean isAllowed;            
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
@@ -124,6 +124,7 @@ namespace SlidingPuzzle
         public void NewPieces(int[,] pieces)
         {
             List<Piece> newPieces = new List<Piece>();
+            this.Images.Clear();
             for (int i = 0; i < pieces.GetLength(0); i++)
             {
                 for (int j = 0; j < pieces.GetLength(1); j++)
@@ -133,7 +134,6 @@ namespace SlidingPuzzle
                 }
             }
             this.Game.Pieces = newPieces.ToArray();
-
         }
 
         public void AddImage(int id, Image img)
