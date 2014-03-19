@@ -217,7 +217,7 @@ namespace SlidingPuzzle
         private void Move(Piece p, Direction direction)
         {
             Point vectorDirection = DirectionToVector(direction);
-            Point nextPoint = new Point(p.Rect.X + pointDirection.X, p.Rect.Y + pointDirection.Y);
+            Point nextPoint = new Point(p.Rect.X + vectorDirection.X, p.Rect.Y + vectorDirection.Y);
             Piece nextToPiece = GetPieceFromPoint(nextPoint);
             if (nextToPiece != null)
             {
