@@ -21,7 +21,9 @@ namespace SlidingPuzzleGUI
         #endregion
 
         #region Fields & Properties
-        private SPController _controller;        
+        private SPController _controller;
+        private int _tileSize;
+        private Point _mapCenter;
 
         internal SPController Controller
         {
@@ -95,12 +97,18 @@ namespace SlidingPuzzleGUI
         private void panGame_Paint(object sender, PaintEventArgs e)
         {
             Graphics gra = e.Graphics;
+            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             int[,] ids = Controller.GetIds();
+
+            _tileSize = (this.panGame.ClientSize.Width / MAP_WIDTH < this.panGame.ClientSize.Height / MAP_HEIGHT) ? this.panGame.ClientSize.Width / MAP_WIDTH : this.panGame.ClientSize.Height / MAP_HEIGHT;
+            _mapCenter.X = (this.panGame.ClientSize.Width - _tileSize * MAP_WIDTH) / 2;
+            _mapCenter.Y = (this.panGame.ClientSize.Height - _tileSize * MAP_HEIGHT) / 2;
+
             for (int x = 0; x < MAP_WIDTH; x++)
                 for (int y = 0; y < MAP_HEIGHT; y++)
 			    {
                     Image bmp = Controller.GetImg(ids[x,y]);
-                    gra.DrawImage(bmp, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                    gra.DrawImage(bmp, _mapCenter.X + x * _tileSize, _mapCenter.Y + y * _tileSize, _tileSize, _tileSize);
                 }
         }
 
@@ -173,25 +181,25 @@ namespace SlidingPuzzleGUI
             Direction direction;
             if (angle < Math.PI / 4 && angle > -Math.PI / 4)
                 direction = Direction.Right;
-            else if (angle > Math.PI / 4 && angle < 3*Math.PI / 4)
+            else if (angle > Math.PI / 4 && angle < 3 * Math.PI / 4)
                 direction = Direction.Up;
-            else if (angle < -Math.PI / 4 && angle > - 3 * Math.PI / 4)
+            else if (angle < -Math.PI / 4 && angle > -3 * Math.PI / 4)
                 direction = Direction.Down;
             else
                 direction = Direction.Left;
-            return direction;    
+            return direction;
         }
 
         private void panGame_MouseClick(object sender, MouseEventArgs e)
         {
-            int pieceX = (int)(e.X / TILE_SIZE);
-            int pieceY = (int)(e.Y / TILE_SIZE);
+            int pieceX = (int)((e.X - _mapCenter.X) / _tileSize);
+            int pieceY = (int)((e.Y - _mapCenter.Y) / _tileSize);
 
-            int pieceCenterPixelX = pieceX * TILE_SIZE + TILE_SIZE/2;
-            int pieceCenterPixelY = pieceY * TILE_SIZE + TILE_SIZE / 2;
+            int pieceCenterPixelX = _mapCenter.X + pieceX * _tileSize + _tileSize / 2;
+            int pieceCenterPixelY = _mapCenter.Y + pieceY * _tileSize + _tileSize / 2;
 
             double angle = Math.Atan2(pieceCenterPixelY - e.Y, e.X - pieceCenterPixelX);
-            Controller.Move(new Point(pieceX, pieceY), AngleToDirection(angle));            
+            Controller.Move(new Point(pieceX, pieceY), AngleToDirection(angle));
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -214,6 +222,11 @@ namespace SlidingPuzzleGUI
                 Controller.LoadGame(ofd.FileName);
                 UpdateView();
             }
+		}
+
+        private void SPView_Resize(object sender, EventArgs e)
+        {
+            panGame.Invalidate();
         }
     }
 }

@@ -134,7 +134,10 @@
             // 
             // panGame
             // 
-            this.panGame.BackColor = System.Drawing.Color.White;
+            this.panGame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panGame.BackColor = System.Drawing.Color.Transparent;
             this.panGame.Location = new System.Drawing.Point(12, 35);
             this.panGame.Name = "panGame";
             this.panGame.Size = new System.Drawing.Size(512, 640);
@@ -154,6 +157,7 @@
             this.Name = "SPView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sliding puzzles";
+            this.Resize += new System.EventHandler(this.SPView_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
