@@ -4,9 +4,11 @@
  * 1.0 : Creation - BAJRAMI & TUX
  */
 using System.Drawing;
+using System;
 
 namespace SlidingPuzzle
 {
+    [Serializable]
     public class Piece
     {
         #region Consts

@@ -67,6 +67,7 @@ namespace SlidingPuzzle
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, this.Game);
+            formatter.Serialize(stream, Score);
             stream.Close();
         }
 
@@ -76,6 +77,7 @@ namespace SlidingPuzzle
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
             this.Game = (Game)formatter.Deserialize(stream);
+            this.Score = (int)formatter.Deserialize(stream);
             stream.Close();
         }
 

@@ -25,6 +25,7 @@ namespace SlidingPuzzle
         Right
     }
 
+    [Serializable]
     class Game
     {
         #region Const.

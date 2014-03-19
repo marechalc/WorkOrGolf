@@ -193,5 +193,22 @@ namespace SlidingPuzzleGUI
         {
             MessageBox.Show("WorkOrGolf\n\nTechniciens ES deuxième année A.K.A. Techniporcs\n2013/2014 - CFPT-Informatique - Genève");
         }
+
+        private void saveGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Controller.SaveGame(sfd.FileName);
+            }
+        }
+
+        private void loadGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Controller.LoadGame(ofd.FileName);
+                UpdateView();
+            }
+        }
     }
 }

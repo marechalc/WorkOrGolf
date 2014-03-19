@@ -7,9 +7,11 @@
 *                2014.02.26, Premtim Bajrami & Christopher Rejas
 */
 using System.Drawing;
+using System;
 
 namespace SlidingPuzzle
 {
+    [Serializable]
     public class Map
     {
         #region Constants

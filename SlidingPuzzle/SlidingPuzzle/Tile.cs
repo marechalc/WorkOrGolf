@@ -7,8 +7,10 @@
  * Vers.   : 1.0, 2014-01-22, CFPTI Technicien ES by : Damien L, Zanos A.
  */
 
+using System;
 namespace SlidingPuzzle
 {
+    [Serializable]
     public class Tile
     {
         #region consts
