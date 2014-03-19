@@ -66,7 +66,7 @@ namespace SlidingPuzzle
         /// Designed constructor
         /// </summary>
         public Game()
-            : this(new Map(), new Piece[DEFAULT_NB_PIECES] {new Piece()})
+            : this(new Map(), new Piece[DEFAULT_NB_PIECES] { new Piece() })
         { } // No code
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace SlidingPuzzle
             {
                 case Direction.Up:
                     for (int x = 0; x < p.Rect.Width; x++)
-                        yield return new Point(x, p.Rect.Top-1);
+                        yield return new Point(x, p.Rect.Top - 1);
                     break;
                 case Direction.Down:
                     for (int x = 0; x < p.Rect.Width; x++)
@@ -250,20 +250,29 @@ namespace SlidingPuzzle
         /// <returns></returns>
         public bool IsCompleted()
         {
-            bool completed = false;
+            bool completed = true;
             // Initialization of final pieces
             Piece[] piecesFinal = new Piece[8];
-            piecesFinal[0] = new Piece(new Rectangle(0, 0, 1, 1), 4);
-            piecesFinal[1] = new Piece(new Rectangle(1, 0, 1, 1), 5);
-            piecesFinal[2] = new Piece(new Rectangle(2, 0, 1, 1), 6);
-            piecesFinal[3] = new Piece(new Rectangle(3, 0, 1, 1), 7);
+            piecesFinal[0] = new Piece(new Rectangle(0, 0, 1, 1), 6);
+            piecesFinal[1] = new Piece(new Rectangle(1, 0, 1, 1), 7);
+            piecesFinal[2] = new Piece(new Rectangle(2, 0, 1, 1), 8);
+            piecesFinal[3] = new Piece(new Rectangle(3, 0, 1, 1), 9);
 
-            piecesFinal[4] = new Piece(new Rectangle(0, 4, 1, 1), 0);
-            piecesFinal[5] = new Piece(new Rectangle(1, 4, 1, 1), 1);
-            piecesFinal[6] = new Piece(new Rectangle(2, 4, 1, 1), 2);
-            piecesFinal[7] = new Piece(new Rectangle(3, 4, 1, 1), 3);
+            piecesFinal[4] = new Piece(new Rectangle(0, 4, 1, 1), 2);
+            piecesFinal[5] = new Piece(new Rectangle(1, 4, 1, 1), 3);
+            piecesFinal[6] = new Piece(new Rectangle(2, 4, 1, 1), 4);
+            piecesFinal[7] = new Piece(new Rectangle(3, 4, 1, 1), 5);
 
             // Test if current game is completed
+            foreach (Piece piece in piecesFinal)
+            {
+                Piece pieceFromPoint = GetPieceFromPoint(piece.Rect.Location);
+                if (pieceFromPoint == null || pieceFromPoint.SymbolId != piece.SymbolId)
+                {
+                    completed = false;
+                    break;
+                }
+            }
 
             return completed;
         }

@@ -21,7 +21,7 @@ namespace SlidingPuzzleGUI
         #endregion
 
         #region Fields & Properties
-        private SPController _controller;
+        private SPController _controller;        
 
         internal SPController Controller
         {
@@ -44,6 +44,8 @@ namespace SlidingPuzzleGUI
         {
             this.lblStatusStrip_Count.Text = "Number of step: " + this.Controller.GetScore().ToString();
             panGame.Invalidate();
+            if (this.Controller.IsCompleted())
+                MessageBox.Show("Vous avez gagné !");
         }
 
         private void menuNewGame_Click(object sender, System.EventArgs e)
@@ -174,7 +176,7 @@ namespace SlidingPuzzleGUI
             int pieceCenterPixelY = pieceY * TILE_SIZE + TILE_SIZE / 2;
 
             double angle = Math.Atan2(pieceCenterPixelY - e.Y, e.X - pieceCenterPixelX);
-            Controller.Move(new Point(pieceX, pieceY), AngleToDirection(angle));
+            Controller.Move(new Point(pieceX, pieceY), AngleToDirection(angle));            
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

@@ -116,6 +116,11 @@ namespace SlidingPuzzleGUI
         public int GetScore()
         {
             return this.Model.Score;
+		}
+			
+        public bool IsCompleted()
+        {
+            return this.Model.IsCompleted();
         }
     }
 }

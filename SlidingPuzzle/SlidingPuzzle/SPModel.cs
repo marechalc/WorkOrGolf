@@ -141,5 +141,9 @@ namespace SlidingPuzzle
             Images.Add(id, img);
         }
 
+        public bool IsCompleted()
+        {
+            return this.Game.IsCompleted();
+        }
     }
 }
