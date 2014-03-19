@@ -31,11 +31,16 @@ namespace SlidingPuzzleGUI
         #endregion
 
         #region Constructor
-        public SPView()
+        public SPView(string puzzleFileName = null)
         {
             InitializeComponent();
             this.Controller = new SPController(this);
             NewGame();
+            if (puzzleFileName != null)
+            {
+                Controller.LoadGame(puzzleFileName);
+                UpdateView();
+            }
         }
         #endregion
 
